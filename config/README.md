@@ -1,4 +1,3 @@
 # HackerSpace
 
 
-HELOOOOOO!!!! PENDEJOOOOO!
