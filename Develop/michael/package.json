@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-  
     "start": "node server.js",
     "lint": "eslint **/*.js --quiet",
     "test": "npm run lint"
@@ -13,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/Asostoa/HackerSpace.git"
   },
-  "author": "Miguelangel Weill, Alexander DeAsostoa, Micheal Muniz, Thalia Rodriguez",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Asostoa/HackerSpace/issues"
