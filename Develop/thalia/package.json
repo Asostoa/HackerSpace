@@ -1,0 +1,25 @@
+{
+  "name": "hackerspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+  
+    "start": "node server.js",
+    "lint": "eslint **/*.js --quiet",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asostoa/HackerSpace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Asostoa/HackerSpace/issues"
+  },
+  "homepage": "https://github.com/Asostoa/HackerSpace#readme",
+  "dependencies": {
+    "eslint": "^7.10.0"
+  }
+}
