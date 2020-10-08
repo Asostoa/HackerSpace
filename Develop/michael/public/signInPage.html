@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   </head>
   <body>
@@ -30,33 +30,46 @@
     </div>
     <!-- End Top Bar -->
 
-    <form>
+    <form id="form">
       <div class="grid-container">
         <div class="grid-x grid-padding-x">
           <div class="medium-6 cell">
-            <label>Input Label
-              <input type="text" placeholder=".medium-6.cell">
+            <label>Full Name
+              <input id="full-name" type="text" placeholder=".medium-6.cell">
+            </label>
+          </div> 
+          <div class="medium-6 cell">
+            <label> Email
+              <input id="email" type="text" placeholder=".medium-6.cell">
             </label>
           </div>
           <div class="medium-6 cell">
-            <label>Input Label
-              <input type="text" placeholder=".medium-6.cell">
+            <label>City
+              <input id="city" type="text" placeholder=".medium-6.cell">
             </label>
           </div>
           <div class="medium-6 cell">
-            <label>Input Label
-              <input type="text" placeholder=".medium-6.cell">
+            <label> Technology Stack
+              <input id="technology-stack" type="text" placeholder=".medium-6.cell">
             </label>
           </div>
           <div class="medium-6 cell">
-            <label>Input Label
-              <input type="text" placeholder=".medium-6.cell">
+            <label>Github
+              <input id="github" type="text" placeholder=".medium-6.cell">
             </label>
           </div>
           <div class="medium-6 cell">
-            <label>Input Label
-              <input type="text" placeholder=".medium-6.cell">
+            <label>LinkedIn
+              <input id="linkedin" type="text" placeholder=".medium-6.cell">
             </label>
+          </div>
+          <div class="medium-6 cell">
+            <label> Profile Image
+              <input id="profile-image" type="text" placeholder=".medium-6.cell">
+            </label>
+          </div>
+          <div class="bottom-form">
+            <a class="primary-btn" id="sign-up-button">Submit</a>
           </div>
         </div>
       </div>
@@ -76,6 +89,7 @@
     </div>      
    </section>
 
+    <script src="index.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
     <script>
