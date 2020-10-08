@@ -97,6 +97,8 @@ h6 {font-size: 16px;}
     justify-content: center;
     align-items: flex-end;
     background-image: url("./images/sample-hero-image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .profile-image-wrapper {
