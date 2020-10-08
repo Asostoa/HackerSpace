@@ -41,6 +41,7 @@ const uploadImage = (file) =>
     blobStream
     //This is the url that is pushed to the database whenever we are done encrypting the file path.
       .on("finish", () => {
+        //This is the url that need's to be assigned to the image.
         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
 
         resolve(publicUrl);
