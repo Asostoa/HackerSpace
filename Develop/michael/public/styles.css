@@ -18,19 +18,19 @@ html, body {
 
 h1, h2, h3, h4, h5, h6, strong {
     color: var(--mainText);
-    font-family: 'Russo One', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-weight: 500;
 }
 
 p, li, span, label, input, textarea {
     color: var(--secondaryText);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 a {
     text-decoration: none;
-    color: var(--accentColor);
-    font-family: 'Roboto', sans-serif;
+    color: var(--secondaryColor);
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 ul {
@@ -47,12 +47,26 @@ h6 {font-size: 16px;}
 .main-container {
     width: 1200px;
     margin: 0 auto;
-    height: 100%;
+    height: auto;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
+}
+
+.navBarText{
+    color: var(--mainText);
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.logo {
+    display: inline-block; 
+    vertical-align: top;
+    width: 50px;
+    height: 50px;
+    /* margin-right: 10px; */
+    /* margin-top: 15px;    if you want it vertically middle of the navbar. */
 }
 
 .primary-btn {
@@ -97,8 +111,7 @@ h6 {font-size: 16px;}
     justify-content: center;
     align-items: flex-end;
     background-image: url("./images/sample-hero-image.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .profile-image-wrapper {
@@ -112,6 +125,7 @@ h6 {font-size: 16px;}
     background-image: url("./images/sample-profile-pic.png");
     background-repeat: no-repeat;
     background-size: cover;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .user-info-section {
@@ -132,7 +146,7 @@ h6 {font-size: 16px;}
     border: 2px solid black;
     border-radius: 10px;
     background-color: white;
-    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 #user-about-info {
@@ -213,6 +227,18 @@ h6 {font-size: 16px;}
     display: flex;
     justify-content: center;
     align-self: center;
+}
+
+.sign-up-input {
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+#sign-up-btn {
+    width: 200px;
+    margin-bottom: 30px;
 }
 
 @media screen and (max-width: 1200px) {
