@@ -20,6 +20,8 @@ app.use(multerMid.single("file"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+require("./miguel/routes/api-routes.js")(app);
+
 app.post("/uploads", async (req, res, next) => {
   try {
     res.send("test")
