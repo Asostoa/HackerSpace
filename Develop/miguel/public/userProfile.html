@@ -1,115 +1,117 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!--This is the Master html-->
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
-    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>Hacker space</title>
+
+    <!--this is the jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--this is the bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-
-    <!-- Start Top Bar -->
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text">Yeti Agency</li>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+      <a href="#" class="navbar-brand">Miguelangel Weill</a>
+      <button
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navbarMenu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarMenu" class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-auto">
+            <a href="#" class="nav-link"> User </a>
+          </li>
+          <li class="nav-item ml-auto">
+            <a href="#" class="nav-link"> Product </a>
+          </li>
+          <li class="nav-item ml-auto">
+            <a href="#" class="nav-link"> User </a>
+          </li>
         </ul>
       </div>
-      <div class="top-bar-right">
-        <ul class="menu">
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-          <li><a href="#">Three</a></li>
-          <li><a href="#">Four</a></li>
+    </nav>
+
+    <div
+      class="jumbotron jumbotron-fluid"
+      style="
+        background-image: url(./images/sample-hero-image.png);
+        background-size: 100%;
+        height: 20%;
+      "
+    >
+      <img
+        id="profileImage"
+        class="rounded-circle mx-auto d-block"
+        src="./images/sample-profile-pic.png"
+        alt="profile Image"
+      />
+    </div>
+
+    <div id="mainContainer" class="row">
+      <div id="userInfo" class=" col-4">
+        <h1>User</h1>
+        <hr />
+        <ul>
+          <li>Name</li>
+          <li>About</li>
+          <li>Technology</li>
         </ul>
       </div>
-    </div>
-    <!-- End Top Bar -->
-
-    <!-- Hero Image w. User Profile Picture -->
-    <section class="profile-hero-section"> 
-
-        <img src="https://storage.googleapis.com/hacker-space/emma_1602117275140-5.jpg" id="profileImage" class="profile-image-wrapper" >
-
-    </section>
-   
-   <!-- User Info -->
-
-   <!-- Top Left User Info-->
-
-   <section class="user-info-section">
-    <div class="main-container">
-      <div class="left-user-column">
-        <div class="card user-info-card" id="user-about-info">
-          <div class="user-card-header">
-            <h4>User Name</h4>
-          </div>
-          <div class="card-section">
-            <ul>
-              <li>About:</li>
-              <li>Lives In:</li>
-              <li>Technology Stack:</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card user-info-card">
-          <div class="user-card-header">
-            <h4>User Projects</h4>
-          </div>
-          <div class="card-section">
-            <div class="project-image-wrapper">
-
-            </div>
-            <div class="project-image-wrapper">
-              
-            </div>
-            <div class="project-image-wrapper">
-              
-            </div>
-          </div>
-        </div>
+      <div id="codeInput" class=" col-6">
+          <h1>Code</h1>
+          <hr>
+          <form>
+            <input class="col-10" id="code-title" type="text" placeholder="Code title"/>
+            <input class="col-10" id="code" type="text" placeholder="Please enter your code" />
+            <input class="col-10" id="description-code" type="text" placeholder="descrtion of the code" />
+            <br>
+            <button id="postBtn" type="submit">Post</button>
+          </form>
       </div>
-
-
-      <div class="right-user-column">
-        <div class="card user-info-card code-form-wrapper">
-          <div class="user-card-header">
-            <h4>User Name</h4>
-          </div>
-          <div class="card-section">
-            <div class="code-form-div">
-              <label>
-              <textarea placeholder="Enter your code" id="code-input" class="code-form"></textarea>
-            </label>
-            <label>
-              <textarea placeholder="Project Description" id="code-input" class="code-form"></textarea>
-            </label>
-            </div>
-
-            <div class="bottom-form">
-              <a class="primary-btn" href="#">Submit</a>
-
-            </div>
-          </div>
-        </div>
+      <div id="projectsContainer" class="col-4 ">
+        <h1>Projects</h1>
+        <hr />
+        <img class="col-4" src="./images/sample-profile-pic.png" alt="" />
+        <img class="col-4" src="./images/sample-profile-pic.png" alt="" />
+        <img class="col-4" src="./images/sample-profile-pic.png" alt="" />
+        <img class="col-4" src="./images/sample-profile-pic.png" alt="" />
       </div>
+      
     </div>
-   </section>
 
-   <!-- Footer Section -->
-
-   <section class="footer-section">
-    <div class="main-container">
-
-    </div>
-  </section>
-  <script src="./js/index.js"></script>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <!--this is our personal js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
     <script>
-      $(document).foundation();
+       $("form").on("submit",function(e){
+           e.preventDefault();
+           console.log("Hello")
+       })
     </script>
   </body>
 </html>
+<!-- alexander@gmail.com -->
