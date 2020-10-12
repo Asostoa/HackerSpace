@@ -1,33 +1,32 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
-    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundation | Welcome</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+</head>
 
-    <!-- Start Top Bar -->
-    <div class="top-bar">
-      <div class="top-bar-left">
-       <ul class="dropdown menu"  data-dropdown-menu>
+<body>
+
+  <!-- Start Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
         <li><img class="logo" src="./images/Attachment-4.png"></li>
-              <li><a class="navBarText">HackerSpace</a></li>
-              <li><input type="search" placeholder="Search"></li>
-              <li><button type="button" class="button secondary"><i class="fas fa-search"></i></button></li>
-          </ul>
-      </div>
-      <div class="top-bar-right">
-          <ul class="menu" id="menuText">
-              <li><a class="navBarText" href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
-              <li><a class="navBarText" href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
-          </ul>
-      </div>
-
+        <li><a class="navBarText">HackerSpace</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu" id="menuText">
+        <li><a class="navBarText" href="/logout"><i class="fas fa-sign-in-alt"></i>Logout</a></li>
+      </ul>
+    </div>
   </div>
   <!-- End Top Bar -->
 
@@ -48,10 +47,11 @@
       <div class="left-user-column">
         <div class="card user-info-card" id="user-about-info">
           <div class="user-card-header">
-            <h4>User Name</h4>
+            <h4 id="name">User Name</h4>
           </div>
           <div class="card-section">
             <ul>
+              <li>Email: <span id="email"></span></li>
               <li>About:</li>
               <li>Lives In:</li>
               <li>Technology Stack:</li>
@@ -60,7 +60,7 @@
         </div>
         <div class="card user-info-card">
           <div class="user-card-header">
-            <h4>User Projects</h4>
+            <h4>My Projects</h4>
           </div>
           <div class="card-section">
             <div class="project-image-wrapper">
@@ -80,15 +80,18 @@
       <div class="right-user-column">
         <div class="card user-info-card code-form-wrapper">
           <div class="user-card-header">
-            <h4>User Name</h4>
+            <h4>Code</h4>
           </div>
           <div class="card-section">
             <div class="code-form-div">
               <label>
-                <textarea placeholder="Enter your code" id="code-input" class="code-form"></textarea>
+                <textarea placeholder="Title" id="code-input" class="code-form title"></textarea>
               </label>
               <label>
-                <textarea placeholder="Project Description" id="code-input" class="code-form"></textarea>
+                <textarea placeholder="Enter your code" id="code-input" class="code-form code"></textarea>
+              </label>
+              <label>
+                <textarea placeholder="Project Description" id="code-input" class="code-form description"></textarea>
               </label>
             </div>
 
@@ -101,24 +104,14 @@
     </div>
   </section>
 
-
   <!-- Footer Section -->
-
 
   <section class="footer-section">
     <div class="main-container">
-      <div class="display-center">
-        <div class="social-wrapper">
-          <a href=""><div class="github-image"><i class="fab fa-github"></i></div></a>
-          <a href=""><div class="linkedin-image"><i class="fab fa-linkedin"></i></div></a>
-          <a href=""><div class="email-image"><i class="fas fa-envelope"></i></div></a>
-        </div>
-      </div>
-    </div>      
-  </section>
 
       <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
       <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+      <script type="text/javascript" src="js/members.js"></script>
       <script>
         $(document).foundation();
       </script>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Semantic UI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <!-- Add custom stylesheet here -->
+</head>
+
+<body>
+
+    <!-- Write your html code here -->
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+        <a class="navbar-brand" href="#">
+            <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            HackerSpace
+          </a>
+        <div id="navbarMenu" class="collapse navbar-collapse ">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-auto">
+                    <a href="#" class="nav-link">
+                        User
+                    </a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a href="#" class="nav-link">
+                        Product
+                    </a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a href="#" class="nav-link">
+                        User
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <form class="signup">       
+    <div class="ui inverted raised form container segment">
+        <div class="ui inverted segment">
+            <div class="ui inverted form centered">
+                <div class="three fields">
+                    <div class="field">
+                        <label>First Name</label>
+                        <input id="first_name" placeholder="First Name" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Last Name</label>
+                        <input id="last_name" placeholder="Last Name" type="text">
+                    </div>
+                    <div class="field">
+                        <label>E-mail</label>
+                        <input id="user_email" type="email" placeholder="joe@schmoe.com">
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label>User Name</label>
+                        <input id="user_name" placeholder="User Name" type="text">
+                    </div>
+
+                    <div class="field">
+                        <label>Password</label>
+                        <input id="user_password" type="password" placeholder="Password" type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Technology Stack</label>
+                    <input id="user_technology" placeholder="Technology Stack">
+                </div>
+                <div class="field">
+                    <label>Github Account</label>
+                    <input id="user_github" placeholder="Github Account">
+                </div>
+                <div class="field">
+                    <label>LinkedIn Account</label>
+                    <input id="user_linkedin" placeholder="LinkedIn Account">
+                </div>
+                <div class="field">
+                    <label>Profile Picture</label>
+                    <input id="user_picture" type="file" placeholder="Profile Image">
+                </div>
+            </div>
+            <div class="inline field">
+                <div class="ui checkbox">
+                    <input type="checkbox" tabindex="0" class="hidden">
+                    <label>I agree to the terms and conditions</label>
+                </div>
+            </div>
+            <div class="ui submit button">Submit</div>
+        </div>
+    </div>
+</form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
+</body>
+
+</html>
