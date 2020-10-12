@@ -1,14 +1,15 @@
 /* global moment */
 
 // When user clicks add-btn
-$("#chirp-submit").on("click", function(event) {
+$("form").on("submit", function(event) {
   event.preventDefault();
 
   // Make a newChirp object
   var newPost = {
-    author: $("#author").val().trim(),
-    body: $("#chirp-box").val().trim(),
-    created_at: moment().format("YYYY-MM-DD HH:mm:ss")
+    title: $("#code_title").val(),
+    code: $("#code").val(),
+    description: $("#description_code").val(),
+    created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
   };
 
   console.log(newPost);
@@ -19,19 +20,21 @@ $("#chirp-submit").on("click", function(event) {
     .then(function() {
 
       var row = $("<div>");
-      row.addClass("chirp");
+      row.addClass("post");
 
-      row.append("<p>" + newPost.author + " chirped: </p>");
-      row.append("<p>" + newPost.body + "</p>");
+      row.append("<p>" + newPost.title + " Posted: </p>");
+      row.append("<p>" + newPost.code + "</p>");
+      row.append("<p>" + newPost.description + "</p>");
       row.append("<p>At " + moment(newPost.created_at).format("h:mma on dddd") + "</p>");
 
-      $("#chirp-area").prepend(row);
+      $("#CodePost").prepend(row);
 
     });
 
   // Empty each input box by replacing the value with an empty string
-  $("#author").val("");
-  $("#chirp-box").val("");
+  $("#code_title").val("");
+  $("#description_code").val("");
+  $("#code").val("");
 });
 
 // When the page loads, grab all of our chirps
@@ -42,13 +45,14 @@ $.get("/api/all", function(data) {
     for (var i = 0; i < data.length; i++) {
 
       var row = $("<div>");
-      row.addClass("chirp");
+      row.addClass("post");
 
-      row.append("<p>" + data[i].author + " chirped.. </p>");
-      row.append("<p>" + data[i].body + "</p>");
+      row.append("<p>" + data[i].author + " posted.. </p>");
+      row.append("<p>" + data[i].code + "</p>");
+      row.append("<p>" + data[i].description + "</p>");
       row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") + "</p>");
 
-      $("#chirp-area").prepend(row);
+      $("#CodePost").prepend(row);
 
     }
 
