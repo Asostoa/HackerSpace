@@ -4,7 +4,7 @@
 
 // Dependencies
 // =============================================================
-var Post = require("../models/post.js");
+var db = require("../models/post");
 
 
 // Routes
@@ -31,10 +31,11 @@ module.exports = function(app) {
     console.log("Post Data:");
     console.log(req.body);
 
-    Post.create({
-      author: req.body.author,
-      body: req.body.body,
-      created_at: req.body.created_at
+    db.Post.create({
+      title:req.body.code_title,
+      code:req.body.code,
+      descritpioin:req.body.description_code,
+      created_at:req.body.created_at
     }).then(function(results) {
       // `results` here would be the newly created chirp
       res.end();

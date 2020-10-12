@@ -2,14 +2,15 @@
 // =============================================================
 
 // This may be confusing but here Sequelize (capital) references the standard library
-var Sequelize = require("sequelize");
+const Sequelize = require("sequelize");
 // sequelize (lowercase) references our connection to the DB.
-var sequelize = require("../config/connection.js");
+const sequelize = require("../config/connection.js");
 
 // Creates a "Chirp" model that matches up with DB
-var Post = sequelize.define("post", {
-  author: Sequelize.STRING,
-  body: Sequelize.STRING(1234),
+const Post = sequelize.define("Post", {
+  title: Sequelize.STRING,
+  code: Sequelize.STRING(1234),
+  descritpioin:Sequelize.STRING(1234),
   created_at: Sequelize.DATE
 });
 
