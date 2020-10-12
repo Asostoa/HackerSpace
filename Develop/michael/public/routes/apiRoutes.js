@@ -9,7 +9,7 @@ router.get("/api/users", (req, res)=>{
     })
 });
 router.post("/api/users", (req, res)=>{
-    user.addUser(req.body).then((note)=>{
+    user.addUser(req.body).then((user)=>{
         res.json(user);
     }).catch((error)=>{
         res.status(500).json(error);

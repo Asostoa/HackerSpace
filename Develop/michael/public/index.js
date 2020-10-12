@@ -1,4 +1,4 @@
-const signUpButton = $("#sign-up-button");
+const signUpButton = $("#sign-up-btn");
 
 let newUser;
 
@@ -6,6 +6,7 @@ signUpButton.on('click', function(event){
     event.preventDefault();
     const fullName = $("#full-name").val();
     const userName = $("#username").val();
+    const password = $("#password").val();
     const email = $("#email").val();
     const city = $("#city").val();
     const technologyStack = $("#technology-stack").val();
@@ -14,6 +15,8 @@ signUpButton.on('click', function(event){
     const profileImage = $("#profile-image").val();
     newUser = {
         fullName,
+        userName,
+        password,
         email,
         city,
         technologyStack,
@@ -21,7 +24,7 @@ signUpButton.on('click', function(event){
         linkedIn,
         profileImage
     };
-    // console.log(user) <-- works
+    console.log(newUser)
     
     $.post("/api/users/" + userName)
     .then((data)=>{
