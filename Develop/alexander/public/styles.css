@@ -146,6 +146,7 @@ h6 {font-size: 16px;}
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
 }
 
 #user-about-info {
@@ -160,7 +161,8 @@ h6 {font-size: 16px;}
     display: flex;
     align-items: center;
     padding-left: 10px;
-    border-bottom: 2px solid black
+    border-bottom: 2px solid black;
+    
 }
 
 .card-section {
@@ -187,8 +189,20 @@ h6 {font-size: 16px;}
     height: 632px;
 }
 
-.code-form {
+.title{
+    height: 50px;
+  
+}
+
+.code{
     height: 200px;
+}
+
+.description {
+    height: 120px;
+}
+
+.code-form {
     border-radius: 10px;
     background-color: #f7f7f7;
     border: 2px solid #000000;
