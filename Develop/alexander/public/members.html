@@ -4,11 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Foundation | Welcome</title>
-
+  <title>HackerSpace</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
   <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 </head>
 
 <body>
@@ -19,14 +20,11 @@
       <ul class="dropdown menu" data-dropdown-menu>
         <li><img class="logo" src="./images/Attachment-4.png"></li>
         <li><a class="navBarText">HackerSpace</a></li>
-        <li><input type="search" placeholder="Search"></li>
-        <li><button type="button" class="button secondary"><i class="fas fa-search"></i></button></li>
       </ul>
     </div>
     <div class="top-bar-right">
       <ul class="menu" id="menuText">
-        <li><a class="navBarText" href="#"><i class="fas fa-user-plus"></i>Sing up</a></li>
-        <li><a class="navBarText" href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
+        <li><a class="navBarText" href="/logout"><i class="fas fa-sign-in-alt"></i>Logout</a></li>
       </ul>
     </div>
   </div>
@@ -35,7 +33,7 @@
   <!-- Hero Image w. User Profile Picture -->
   <section class="profile-hero-section">
     <div class="hero-image">
-      <div class="profile-image-wrapper">
+      <div id="profileImage" class="profile-image-wrapper" >
       </div>
     </div>
   </section>
@@ -49,19 +47,21 @@
       <div class="left-user-column">
         <div class="card user-info-card" id="user-about-info">
           <div class="user-card-header">
-            <h4>User Name</h4>
+            <h4 id="name">User Name</h4>
           </div>
           <div class="card-section">
             <ul>
-              <li>About:</li>
-              <li>Lives In:</li>
-              <li>Technology Stack:</li>
+              <li>Email: <span id="email"></span></li>
+              <li>City: <span id="city"></span></li>
+              <li>Technology Stack: <span id="technology"></span></li>
+              <li>Github: <span id="github"></span></li>
+              <li>LinkedIn: <span id="linkedin"></span></li>
             </ul>
           </div>
         </div>
         <div class="card user-info-card">
           <div class="user-card-header">
-            <h4>User Projects</h4>
+            <h4>My Projects</h4>
           </div>
           <div class="card-section">
             <div class="project-image-wrapper">
@@ -75,24 +75,30 @@
             </div>
           </div>
         </div>
+        <div id="profile"></div>
       </div>
+
+
       <div class="right-user-column">
         <div class="card user-info-card code-form-wrapper">
           <div class="user-card-header">
-            <h4>User Name</h4>
+            <h4>Code</h4>
           </div>
           <div class="card-section">
             <div class="code-form-div">
               <label>
-                <textarea placeholder="Enter your code" id="code-input" class="code-form"></textarea>
+                <textarea placeholder="Title" id="code-input" class="code-form title"></textarea>
               </label>
               <label>
-                <textarea placeholder="Project Description" id="code-input" class="code-form"></textarea>
+                <textarea placeholder="Enter your code" id="code-input" class="code-form code"></textarea>
+              </label>
+              <label>
+                <textarea placeholder="Project Description" id="code-input" class="code-form description"></textarea>
               </label>
             </div>
 
             <div class="bottom-form">
-              <a class="button secondary" href="#">Submit</a>
+              <a class="primary-btn" href="#" id="sign-up-button">Submit</a>
             </div>
           </div>
         </div>
@@ -102,17 +108,14 @@
 
   <!-- Footer Section -->
 
-  <section class="footer-section">
-    <div class="main-container">
+  <section class="footer-section"></section>
 
-    </div>
-  </section>
-  <script src="https://kit.fontawesome.com/7ac1a23662.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script type="text/javascript" src="js/members.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 </body>
 
 </html>
