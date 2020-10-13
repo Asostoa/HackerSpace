@@ -4,5 +4,9 @@ $(document).ready(() => {
   $.get("/api/user_data").then(data => {
     $("#name").text(data.name);
     $("#email").text(data.email);
+    $("#city").text(data.city);
+    $("#technology").text(data.technology);
+    $("#github").text(data.github);
+    $("#linkedin").text(data.linkedin);
   });
 });
