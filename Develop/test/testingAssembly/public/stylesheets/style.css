@@ -1,0 +1,17 @@
+
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+.card{
+  margin: 3%;
+}
+#repoBtn{
+  text-align: right;
+  margin-top: 3%;
+}
+#stars{
+  font-size: 1.5rem;
+  text-align: right;
+  background-color: white;
+}
