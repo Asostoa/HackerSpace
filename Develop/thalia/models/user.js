@@ -25,25 +25,25 @@ module.exports = function (sequelize, DataTypes) {
     // The city cannot be null
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     // The technology slack cannot be null
     technology: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     // The github username cannot be null
     github: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     // The linkedin username cannot be null
     linkedin: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   });
-  User.associate = function (models) {
+  User.associate = function(models) {
     // Associating User with Codes
     // When an User is deleted, also delete any associated Codes
     User.hasMany(models.Code, {
@@ -51,7 +51,7 @@ module.exports = function (sequelize, DataTypes) {
     });
   };
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-  User.prototype.validPassword = function (password) {
+  User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
   // Hooks are automatic methods that run during various phases of the User Model lifecycle
