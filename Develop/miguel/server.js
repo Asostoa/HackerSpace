@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const uploadImage = require("./helpers/helpers");
 const ejs =require("ejs");
-
+const upload = multer({ dest: "uploads/" });
 const app = express();
 
 app.set("view engine","ejs")
@@ -21,16 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-require("../miguel/routes/api-routes.js")(app);
-=======
-
-
-
-=======
-
-app.post("/uploads", async (req, res, next) => {
+app.post("/uploads",upload.single("avatar"), async (req, res, next) => {
   try {
-    res.send("test")
     const myFile = req.file;
     console.log(myFile)
     const imageUrl = await uploadImage(myFile);

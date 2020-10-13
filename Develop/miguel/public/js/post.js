@@ -1,61 +1,64 @@
-/* global moment */
+// /* global moment */
 
-// When user clicks add-btn
-$("form").on("submit", function(event) {
-  event.preventDefault();
+// // When user clicks add-btn
+// $("form").on("submit", function(event) {
+//   event.preventDefault();
 
-  // Make a newChirp object
-  var newPost = {
-    title: $("#code_title").val(),
-    code: $("#code").val(),
-    description: $("#description_code").val(),
-    created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
-  };
+//   // Make a newChirp object
+//   var newPost = {
+//     title: $("#code_title").val(),
+//     code: $("#code").val(),
+//     description: $("#description_code").val(),
+//     created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+//   };
 
-  console.log(newPost);
+//   console.log(newPost);
 
-  // Send an AJAX POST-request with jQuery
-  $.post("/api/new", newPost)
-    // On success, run the following code
-    .then(function() {
+//   // Send an AJAX POST-request with jQuery
+//   $.post(
+//     " https://cors-anywhere/api/new",
+//     newPost
+//   )
+//     // On success, run the following code
+//     .then(function () {
+//       var row = $("<div>");
+//       row.addClass("post");
 
-      var row = $("<div>");
-      row.addClass("post");
+//       row.append("<p>" + newPost.title + " Posted: </p>");
+//       row.append("<p>" + newPost.code + "</p>");
+//       row.append("<p>" + newPost.description + "</p>");
+//       row.append(
+//         "<p>At " + moment(newPost.created_at).format("h:mma on dddd") + "</p>"
+//       );
 
-      row.append("<p>" + newPost.title + " Posted: </p>");
-      row.append("<p>" + newPost.code + "</p>");
-      row.append("<p>" + newPost.description + "</p>");
-      row.append("<p>At " + moment(newPost.created_at).format("h:mma on dddd") + "</p>");
+//       $("#CodePost").prepend(row);
+//     });
 
-      $("#CodePost").prepend(row);
+//   // Empty each input box by replacing the value with an empty string
+//   $("#code_title").val("");
+//   $("#description_code").val("");
+//   $("#code").val("");
+// });
 
-    });
+// // When the page loads, grab all of our chirps
+// $.get("/api/all", function(data) {
 
-  // Empty each input box by replacing the value with an empty string
-  $("#code_title").val("");
-  $("#description_code").val("");
-  $("#code").val("");
-});
+//   if (data.length !== 0) {
 
-// When the page loads, grab all of our chirps
-$.get("/api/all", function(data) {
+//     for (var i = 0; i < data.length; i++) {
 
-  if (data.length !== 0) {
+//       var row = $("<div>");
+//       row.addClass("post");
 
-    for (var i = 0; i < data.length; i++) {
+//       row.append("<p>" + data[i].author + " posted.. </p>");
+//       row.append("<p>" + data[i].code + "</p>");
+//       row.append("<p>" + data[i].description + "</p>");
+//       row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") + "</p>");
 
-      var row = $("<div>");
-      row.addClass("post");
+//       $("#CodePost").prepend(row);
 
-      row.append("<p>" + data[i].author + " posted.. </p>");
-      row.append("<p>" + data[i].code + "</p>");
-      row.append("<p>" + data[i].description + "</p>");
-      row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") + "</p>");
+//     }
 
-      $("#CodePost").prepend(row);
+//   }
 
-    }
-
-  }
-
-});
+// });

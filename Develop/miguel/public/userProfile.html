@@ -7,21 +7,21 @@
     <title>Hacker space</title>
 
     <!--this is the jquery-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--this is the bootstrap-->
     <link
       rel="stylesheet"
-      href="http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
     <!-- Semantic ui -->
     <link
       rel="stylesheet"
-      href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     />
     <!-- moment.js -->
-      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
 
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -79,7 +79,7 @@
       <div id="codeInput" class=" col-6">
           <h1>Code</h1>
           <hr>
-          <form>
+          <form >
             <input class="col-10" id="code_title" type="text" placeholder="Code title"/>
             <input class="col-10" id="code" type="text" placeholder="Please enter your code" />
             <input class="col-10" id="description_code" type="text" placeholder="descrtion of the code" />
@@ -96,24 +96,28 @@
         <img class="col-4" src="./images/sample-profile-pic.png" alt="" />
       </div>
       <div style="border: solid black 1px;margin-left:5%; margin-top: 5%;" id="CodePost" class="col-4">
-
       </div>
       
     </div>
+    <form action="/uploads" method="post" enctype="multipart/form-data">
+      <input type="file" name="avatar" />
+      <button id="uploadBtn">Upload</button>
+    </form>
 
     <!--this is our personal js-->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <script
-      src="http://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
       crossorigin="anonymous"
     ></script>
     <script
-      src="http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/post.js"></script>
+    <script src="index.js">
+    </script>
   </body>
 </html>
 <!-- alexander@gmail.com -->
