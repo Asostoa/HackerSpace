@@ -1,41 +1,40 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Foundation | Welcome</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  </head>
+  <body>
 
-  <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-  <!-- Start Top Bar -->
-  <div class="top-bar">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
+    <!-- Start Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+       <ul class="dropdown menu"  data-dropdown-menu>
         <li><img class="logo" src="./images/Attachment-4.png"></li>
-        <li><a class="navBarText">HackerSpace</a></li>
-        <li><input type="search" placeholder="Search"></li>
-        <li><button type="button" class="button secondary"><i class="fas fa-search"></i></button></li>
-      </ul>
-    </div>
-    <div class="top-bar-right">
-      <ul class="menu" id="menuText">
-        <li><a class="navBarText" href="#"><i class="fas fa-user-plus"></i>Sing up</a></li>
-        <li><a class="navBarText" href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
-      </ul>
-    </div>
+              <li><a class="navBarText">HackerSpace</a></li>
+              <li><input type="search" placeholder="Search"></li>
+              <li><button type="button" class="button secondary"><i class="fas fa-search"></i></button></li>
+          </ul>
+      </div>
+      <div class="top-bar-right">
+          <ul class="menu" id="menuText">
+              <li><a class="navBarText" href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
+              <li><a class="navBarText" href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
+          </ul>
+      </div>
+
   </div>
   <!-- End Top Bar -->
 
   <!-- Hero Image w. User Profile Picture -->
   <section class="profile-hero-section">
     <div class="hero-image">
-      <div class="profile-image-wrapper">
+      <div id="profileImage" class="profile-image-wrapper">
       </div>
     </div>
   </section>
@@ -76,6 +75,8 @@
           </div>
         </div>
       </div>
+
+
       <div class="right-user-column">
         <div class="card user-info-card code-form-wrapper">
           <div class="user-card-header">
@@ -92,7 +93,7 @@
             </div>
 
             <div class="bottom-form">
-              <a class="button secondary" href="#">Submit</a>
+              <a class="primary-btn" href="#" id="sign-up-button">Submit</a>
             </div>
           </div>
         </div>
@@ -100,19 +101,27 @@
     </div>
   </section>
 
+
   <!-- Footer Section -->
+
 
   <section class="footer-section">
     <div class="main-container">
-
-    </div>
+      <div class="display-center">
+        <div class="social-wrapper">
+          <a href=""><div class="github-image"><i class="fab fa-github"></i></div></a>
+          <a href=""><div class="linkedin-image"><i class="fab fa-linkedin"></i></div></a>
+          <a href=""><div class="email-image"><i class="fas fa-envelope"></i></div></a>
+        </div>
+      </div>
+    </div>      
   </section>
-  <script src="https://kit.fontawesome.com/7ac1a23662.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
+
+      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+      <script>
+        $(document).foundation();
+      </script>
 </body>
 
 </html>

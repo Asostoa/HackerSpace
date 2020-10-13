@@ -2,9 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const uploadImage = require("./helpers/helpers");
-
+const ejs =require("ejs");
+const upload = multer({ dest: "uploads/" });
 const app = express();
 
+app.set("view engine","ejs")
 const multerMid = multer({
   storage: multer.memoryStorage(),
   limits: {
@@ -18,9 +20,11 @@ app.use(multerMid.single("file"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post("/uploads", async (req, res, next) => {
+
+app.post("/uploads",upload.single("avatar"), async (req, res, next) => {
   try {
     const myFile = req.file;
+    console.log(myFile)
     const imageUrl = await uploadImage(myFile);
     res.status(200).json({
       message: "Upload was successful",
