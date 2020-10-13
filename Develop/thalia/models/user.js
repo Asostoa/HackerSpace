@@ -21,7 +21,27 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    // The city cannot be null
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // The technology slack cannot be null
+    technology: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // The github username cannot be null
+    github: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // The linkedin username cannot be null
+    linkedin: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
   User.associate = function (models) {
     // Associating User with Codes
