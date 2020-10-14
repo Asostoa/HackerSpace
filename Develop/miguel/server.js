@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const uploadImage = require("./helpers/helpers");
 const ejs =require("ejs");
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: "uploads" });
 const app = express();
 
 app.set("view engine","ejs")

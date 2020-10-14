@@ -3,9 +3,17 @@ $("#uploadBtn").click(function(event){
     event.preventDefault();
     var input = document.querySelector("input[type=file]"),
       file = input.files[0];
-    console.log(file)
+      const url="/uploads"
+   $.ajax({
+     type: "POST",
+     url: url,
+     data: file,
+    //  success: success,
+    //  dataType: dataType,
+     contentType: "multipart/form-data",
+   })
 
-})
+});
 
 
 });
