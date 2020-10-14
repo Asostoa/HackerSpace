@@ -41,55 +41,7 @@
     </div>
   </nav>
 
-  <div class="jumbotron jumbotron-fluid" style="
-        background-image: url(./images/sample-hero-image.png);
-        background-size: 100%;
-        height: 20%;
-      ">
-    <img id="profileImage" style="height: 8rem;" class="rounded-circle mx-auto d-block" src="../uploads/2020-10-14T20:54:49.275Zcalendar.jpg"
-      alt="profile Image" />
-  </div>
-
-  <div id="mainContainer" class="row">
-    <div id="userInfo" class="card mx-auto col-4">
-      <h1 id="name">User</h1>
-      <hr />
-      <ul>
-        <li>Email: <span id="email"></span></li>
-        <li>City: <span id="city"></span></li>
-        <li>Technology Stack: <span id="technology"></span></li>
-        <li>Github: <span id="github"></span></li>
-        <li>LinkedIn: <span id="linkedin"></span></li>
-      </ul>
-    </div>
-
-    <div id="codeInput" class="card mx-auto col-6">
-      <h1>Code</h1>
-      <hr>
-      <form>
-        <input class="col-10" id="code_title" type="text" placeholder="Code title" />
-        <input class="col-10" id="code" type="text" placeholder="Please enter your code" />
-        <input class="col-10" id="description_code" type="text" placeholder="descrtion of the code" />
-        <br>
-        <button id="postBtn" type="submit">Post</button>
-      </form>
-    </div>
-    <div id="projectsContainer" class="card mx-auto col-4 float-left">
-      <h1>Projects</h1>
-      <hr />
-      <div id="profile">
-        
-      </div>
-    </div>
-    <div class="card mx-auto col-6">
-
-    </div>
-    <form action="/uploads" method="POST" enctype="multipart/form-data">
-      <input type="file" name="avatar" />
-      <button id="uploadBtn">Upload</button>
-    </form>
-
-  </div>
+  {{{ body }}}
 
   <!--this is our personal js-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
@@ -103,5 +55,3 @@
 </body>
 
 </html>
-
-
