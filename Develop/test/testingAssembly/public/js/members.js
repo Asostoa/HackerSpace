@@ -1,4 +1,23 @@
 $(document).ready(() => {
+
+  $("#uploadBtn").click(function(event) {
+    event.preventDefault();
+    var input = document.querySelector("input[type=file]"),
+      file = input.files[0];
+    var formData = new FormData();
+    formData.append("avatar", file);
+
+    const url = "/uploads";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data:{form:formData},
+      processData:false,
+      //  success: success,
+      //  dataType: dataType,
+      contentType: false,
+    });
+  });
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   $.get("/api/user_data").then((data) => {
@@ -53,4 +72,7 @@ $(document).ready(() => {
       `);
     });
   });
+
+
+
 });
