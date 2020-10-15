@@ -1,8 +1,37 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const multer = require("multer");
+//Whatever value is passed here has to be "req.file" value of the image.
+const uploadImage = require("../helpers/helpers.js");
 
-module.exports = function (app) {
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./uploads/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    //This will save it if is an image
+    cb(null, true);
+  } else {
+    //if now an image we wont allow to save
+    cb(null, false);
+  }
+};
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -25,7 +54,7 @@ module.exports = function (app) {
       city: req.body.city,
       technology: req.body.technology,
       github: req.body.github,
-      linkedin: req.body.linkedin,
+      linkedin: req.body.linkedin
     })
       .then(() => {
         res.redirect(307, "/api/login");
@@ -33,6 +62,51 @@ module.exports = function (app) {
       .catch(err => {
         res.status(401).json(err);
       });
+  });
+
+  app.post("/api/code", (req, res) => {
+    db.Code.create({
+      title: req.body.title,
+      code: req.body.code,
+      description: req.body.description
+    })
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.delete("/api/code/:id", req => {
+    db.Code.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+  
+  app.post("/uploads", upload.single("avatar"), async (req, res, next) => {
+    console.log(req.file);
+    try {
+      console.log(req);
+      const myFile = req.file;
+      // console.log(myFile);
+      const imageUrl = await uploadImage(myFile);
+      console.log("this is the image url: ", imageUrl);
+      res.status(200).json({
+        message: "Upload was successful",
+        data: imageUrl
+      });
+    } catch (error) {
+      next(error);
+    }
   });
 
   // Route for logging user out
@@ -56,7 +130,7 @@ module.exports = function (app) {
         city: req.user.city,
         technology: req.user.technology,
         github: req.user.github,
-        linkedin: req.user.linkedin,
+        linkedin: req.user.linkedin
       });
     }
   });

@@ -1,25 +1,38 @@
 {
-  "name": "hackerspace",
+  "name": "1-Passport-Example",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+    "test": "npm run lint",
     "start": "node server.js",
-    "lint": "eslint **/*.js --quiet",
-    "test": "npm run lint"
+    "lint": "eslint --quiet .",
+    "fix": "eslint --fix .",
+    "watch": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Asostoa/HackerSpace.git"
-  },
-  "author": "Miguelangel Weill, Alexander DeAsostoa, Micheal Muniz, Thalia Rodriguez",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Asostoa/HackerSpace/issues"
-  },
-  "homepage": "https://github.com/Asostoa/HackerSpace#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "eslint": "^7.10.0"
+    "@google-cloud/storage": "^5.3.0",
+    "bcryptjs": "2.4.3",
+    "bulma": "^0.9.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "multer": "^1.4.2",
+    "mysql2": "^1.6.5",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.8.6"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.7"
   }
 }

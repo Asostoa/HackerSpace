@@ -22,11 +22,27 @@ $(document).ready(() => {
       linkedin: linkedinInput.val().trim(),
     };
 
-    if (!userData.name || !userData.email || !userData.password || !userData.city || !userData.technology || !userData.github, !userData.linkedin) {
+    if (
+      (!userData.name ||
+        !userData.email ||
+        !userData.password ||
+        !userData.city ||
+        !userData.technology ||
+        !userData.github,
+      !userData.linkedin)
+    ) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.name, userData.email, userData.password, userData.city, userData.technology, userData.github, userData.linkedin);
+    signUpUser(
+      userData.name,
+      userData.email,
+      userData.password,
+      userData.city,
+      userData.technology,
+      userData.github,
+      userData.linkedin
+    );
     nameInput.val("");
     emailInput.val("");
     passwordInput.val("");
@@ -38,7 +54,15 @@ $(document).ready(() => {
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(name, email, password, city, technology, github, linkedin) {
+  function signUpUser(
+    name,
+    email,
+    password,
+    city,
+    technology,
+    github,
+    linkedin
+  ) {
     $.post("/api/signup", {
       name: name,
       email: email,
@@ -53,6 +77,7 @@ $(document).ready(() => {
         window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
+      // eslint-disable-next-line no-use-before-define
       .catch(handleLoginErr);
   }
 
