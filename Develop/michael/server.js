@@ -1,77 +1,43 @@
+// Requiring necessary npm packages
 const express = require("express");
+const session = require("express-session");
+// Requiring passport as we've configured it
+const passport = require("./config/passport");
+// const bodyParser = require("body-parser");
+
 const exphbs = require("express-handlebars");
-const mysql = require("mysql");
-
-
+// Creating express app and configuring middleware needed for authentication
 const app = express();
-
-const PORT = process.env.PORT || 8080;
-
-app.use(express.static("public"));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-const connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "root",
-    database: "code_db"
-});
+// Setting up port and requiring models for syncing
+const PORT = process.env.PORT || 8080;
+const db = require("./models");
 
-connection.connect(function(err) {
-    if (err) {
-      console.error("error connecting: " + err.stack);
-      return;
-    }
-    console.log("connected as id " + connection.threadId);
-});
+app.use("/uploads", express.static("uploads"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
+// We need to use sessions to keep track of our user's login status
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-// const htmlRoutes = require("./routes/htmlRoutes.js");
-// const apiRoutes = require("./routes/apiRoutes.js");
+// Requiring our routes
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
-// app.use(htmlRoutes);
-// app.use(apiRoutes);
-
-
-
-app.get("/profile", (req,res)=>{
-    connection.query("SELECT * FROM userCode;", function(err, data) {
-        if (err) {
-          return res.status(500).end();
-        }
-    
-        res.render("index", { code: data });
-    });
-})
-
-app.post("/api/code",(req, res) =>{
-    connection.query("INSERT INTO userCode (title, code, description) VALUES (?,?,?)", [req.body.title, req.body.code, req.body.description], function(err, result) {
-        if (err) {
-        return res.status(500).end();
-        }
-        res.json({ id: result.insertId });
-        console.log({ id: result.insertId });
-        console.log("complete");
-    });
-});
-
-app.delete("/api/code/:id", (req,res)=>{
-    connection.query("DELETE FROM userCode WHERE id = ?",[req.params.id],(err,data)=>{
-        if (err){
-            return res.status(500).end();
-        } else if (data.affectedRows === 0){
-            return res.status(404).end();
-        }
-        console.log("User Code Deleted! Id: "+req.params.id)
-        res.status(200).end();
-    });
-});
-
-app.listen(PORT, function() {
-    console.log("Server listening on: http://localhost:" + PORT);
+// Syncing our database and logging a message to the user upon success
+db.sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT,
+      PORT
+    );
+  });
 });

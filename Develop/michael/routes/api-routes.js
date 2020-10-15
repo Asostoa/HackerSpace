@@ -1,0 +1,147 @@
+// Requiring our models and passport as we've configured it
+const db = require("../models");
+const passport = require("../config/passport");
+const multer = require("multer");
+//Whatever value is passed here has to be "req.file" value of the image.
+const uploadImage = require("../helpers/helpers.js");
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./uploads/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    //This will save it if is an image
+    cb(null, true);
+  } else {
+    //if now an image we wont allow to save
+    cb(null, false);
+  }
+};
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+module.exports = function(app) {
+  // Using the passport.authenticate middleware with our local strategy.
+  // If the user has valid login credentials, send them to the members page.
+  // Otherwise the user will be sent an error
+  app.post("/api/login", passport.authenticate("local"), (req, res) => {
+    // Sending back a password, even a hashed password, isn't a good idea
+    res.json({
+      email: req.user.email,
+      id: req.user.id
+    });
+  });
+
+  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
+  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
+  // otherwise send back an error
+  app.post("/api/signup", (req, res) => {
+    db.User.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      city: req.body.city,
+      technology: req.body.technology,
+      github: req.body.github,
+      linkedin: req.body.linkedin
+    })
+      .then(() => {
+        res.redirect(307, "/api/login");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/uploads", upload.single("avatar"), async (req, res, next) => {
+    console.log(req.file);
+    try {
+      console.log(req);
+      const myFile = req.file;
+      // console.log(myFile);
+      const imageUrl = await uploadImage(myFile);
+      console.log("this is the image url: ", imageUrl);
+      res.status(200).json({
+        message: "Upload was successful",
+        data: imageUrl
+      });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  // Route for logging user out
+  app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
+  });
+
+  // Route for getting some data about our user to be used client side
+  app.get("/api/user_data", (req, res) => {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        name: req.user.name,
+        email: req.user.email,
+        id: req.user.id,
+        city: req.user.city,
+        technology: req.user.technology,
+        github: req.user.github,
+        linkedin: req.user.linkedin
+      });
+    }
+  });
+
+  app.post("/api/code",(req, res) =>{
+    connection.query("INSERT INTO code (title, code, description) VALUES (?,?,?)", [req.body.title, req.body.code, req.body.description], function(err, result) {
+        if (err) {
+        return res.status(500).end();
+        }
+        res.json({ id: result.insertId });
+        console.log({ id: result.insertId });
+        console.log("complete");
+    });
+});
+
+  app.delete("/api/code/:id", (req,res)=>{
+    connection.query("DELETE FROM code WHERE id = ?",[req.params.id],(err,data)=>{
+        if (err){
+            return res.status(500).end();
+        } else if (data.affectedRows === 0){
+            return res.status(404).end();
+        }
+        console.log("User Code Deleted! Id: "+req.params.id)
+        res.status(200).end();
+    });
+});
+
+  app.put("/api/code/:id", (req,res)=>{
+    connection.query("UPDATE code SET title = ?, code = ?, description = ? WHERE id = ?", [req.body.title, req.body.code, req.body.description, req.params.id], function(err, result) {
+        if (err) {
+          // If an error occurred, send a generic server failure
+          return res.status(500).end();
+        }
+        else if (result.changedRows === 0) {
+          // If no rows were changed, then the ID must not exist, so 404
+          return res.status(404).end();
+        }
+        res.status(200).end();
+    
+    });
+});
+};
