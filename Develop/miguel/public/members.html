@@ -1,0 +1,88 @@
+<!--This is the Master html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hacker space</title>
+
+  <!--this is the jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!--this is the bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <!-- Bulma cdn -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <!-- moment.js -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+  <link rel="stylesheet" href="./stylesheets/style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <img id="imageContainer" src="./images/Attachment-4.png">
+    </div>
+  </nav>
+
+  <div id="jumbotronImage" class="jumbotron jumbotron-fluid">
+    <img id="profileImage" src="https://images.unsplash.com/photo-1592609931095-54a2168ae893?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" style="height: 8rem;" class="rounded-circle mx-auto d-block" src="../uploads/2020-10-14T20:54:49.275Zcalendar.jpg"
+      alt="profile Image" />
+  </div>
+
+  <div id="mainContainer" class="row">
+    <div id="userInfo" class="card mx-auto col-4">
+      <h1 id="name">User</h1>
+      <hr />
+      <ul>
+        <li>Email: <span id="email"></span></li>
+        <li>City: <span id="city"></span></li>
+        <li>Technology Stack: <span id="technology"></span></li>
+        <li>Github: <span id="github"></span></li>
+        <li>LinkedIn: <span id="linkedin"></span></li>
+      </ul>
+    </div>
+
+    <div id="codeInput" class="card mx-auto col-6">
+      <h1>Code</h1>
+      <hr>
+      <form>
+        <input class="col-10" id="code_title" type="text" placeholder="Code title" />
+        <input class="col-10" id="code" type="text" placeholder="Please enter your code" />
+        <input class="col-10" id="description_code" type="text" placeholder="descrtion of the code" />
+        <br>
+        <button id="postBtn" type="submit">Post</button>
+      </form>
+    </div>
+    <div id="projectsContainer" class="card mx-auto col-4 float-left">
+      <h1>Projects</h1>
+      <hr />
+      <div id="profile">
+        
+      </div>
+    </div>
+    <div class="card mx-auto col-6">
+
+    </div>
+    <form action="/uploads" method="POST" enctype="multipart/form-data">
+      <input type="file" name="avatar" />
+      <button id="uploadBtn">Upload</button>
+    </form>
+
+  </div>
+
+  <!--this is our personal js-->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/members.js"></script>
+</body>
+
+</html>
+
+
