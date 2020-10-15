@@ -64,6 +64,33 @@ module.exports = function(app) {
       });
   });
 
+  app.post("/api/code", (req, res) => {
+    db.Code.create({
+      title: req.body.title,
+      code: req.body.code,
+      description: req.body.description
+    })
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.delete("/api/code/:id", req => {
+    db.Code.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
   app.post("/uploads", upload.single("avatar"), async (req, res, next) => {
     console.log(req.file);
     try {
