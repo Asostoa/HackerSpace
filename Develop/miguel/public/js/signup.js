@@ -10,7 +10,7 @@ $(document).ready(() => {
   const linkedinInput = $("input#linkedin-input");
 
   // When the signup button is clicked, we validate the email and password are not blank
-  signUpForm.on("submit", (event) => {
+  signUpForm.on("submit", event => {
     event.preventDefault();
     const userData = {
       name: nameInput.val().trim(),
@@ -71,11 +71,13 @@ $(document).ready(() => {
       technology: technology,
       github: github,
       linkedin: linkedin,
+
     })
       .then(() => {
         window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
+      // eslint-disable-next-line no-use-before-define
       .catch(handleLoginErr);
   }
 
