@@ -6,18 +6,13 @@ $(document).ready(() => {
   const deleteButton = $('.delete-btn');
   const updateButton = $('#update-btn');
 
-  $("#hackerInput").on("keyup", (event) => {
+  $("#hackerSearchBtn").on("click", (event) => {
     console.log($("#hackerInput").val());
     const hackerInput = $("#hackerInput").val();
-    const url = "/api/hacker/"+hackerInput;
-    $.ajax("/api/hacker/" + hackerInput, {
-      type: "GET",
-      url: url,
-      data: hackerInput,
-    }).then(function(result) {
+    const url = "/api/hacker/" + hackerInput;
+    $.get(url).then(function(result) {
       console.log(result);
     });
-
   });
 // const hackerInput = $("#hackerInput").val();
 //     // const url = "/api/hackers/" + hackerInput;
