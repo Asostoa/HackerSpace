@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
   },
   filename: function(req, file, cb) {
     cb(null, new Date().toISOString() + file.originalname);
-  }
+  },
 });
 
 const fileFilter = (req, file, cb) => {
@@ -26,9 +26,9 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 1024 * 5
+    fileSize: 1024 * 1024 * 5,
   },
-  fileFilter: fileFilter
+  fileFilter: fileFilter,
 });
 
 module.exports = function(app) {
@@ -39,7 +39,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -54,7 +54,7 @@ module.exports = function(app) {
       city: req.body.city,
       technology: req.body.technology,
       github: req.body.github,
-      linkedin: req.body.linkedin
+      linkedin: req.body.linkedin,
     })
       .then(() => {
         res.redirect(307, "/api/login");
@@ -73,7 +73,7 @@ module.exports = function(app) {
       console.log("this is the image url: ", imageUrl);
       res.status(200).json({
         message: "Upload was successful",
-        data: filePath
+        data: filePath,
       });
     } catch (error) {
       next(error);
@@ -101,28 +101,26 @@ module.exports = function(app) {
         city: req.user.city,
         technology: req.user.technology,
         github: req.user.github,
-        linkedin: req.user.linkedin
+        linkedin: req.user.linkedin,
       });
       //We need to create a flag that will validate the user id that is being logged into the profile to match the id of the user which we are serching for , if they dont match hide certain things otherwise lets leave it alone.
-
-
     }
   });
 
-  app.get("/api/hacker/:searchTerm", (req,res) => {
+  app.get("/api/hacker/:searchTerm", (req, res) => {
     console.log(req.params.searchTerm);
     db.User.findAll({
-      where:{
-        name: req.params.searchTerm
-      }
+      where: {
+        name: req.params.searchTerm,
+      },
     }).then((err, result) => {
-      if(err){
+      if (err) {
         res.sendStatus(401).end();
-      }else{
-        res.json({result})
+      } else {
+        res.json(result);
       }
-    })
-  })
+    });
+  });
 
   app.post("/api/code", (req, res) => {
     db.Code.create({
@@ -131,7 +129,7 @@ module.exports = function(app) {
       description: req.body.description,
       UserId: req.user.id,
     })
-      .then(() => {
+      .then((result) => {
         res.json({ id: result.insertId });
         console.log({ id: result.insertId });
         console.log("complete");
@@ -142,7 +140,7 @@ module.exports = function(app) {
       });
   });
 
-  app.delete("/api/code/:id", (req) => {
+  app.delete("/api/code/:id", (req, res) => {
     db.Code.destroy({
       where: {
         id: req.params.id,
@@ -153,7 +151,7 @@ module.exports = function(app) {
         res.sendStatus(200);
       })
       .catch((err) => {
-        res.status(401).json(err);
+        res.statusStatus(401).json(err);
       });
   });
 
