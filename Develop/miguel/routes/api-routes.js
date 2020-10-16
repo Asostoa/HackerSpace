@@ -108,10 +108,12 @@ module.exports = function(app) {
   });
 
   app.get("/api/hacker/:searchTerm", (req, res) => {
+    const hackerSearch = req.params.searchTerm;
     console.log(req.params.searchTerm);
+
     db.User.findAll({
       where: {
-        name: req.params.searchTerm,
+        name: hackerSearch,
       },
     }).then((err, result) => {
       if (err) {
