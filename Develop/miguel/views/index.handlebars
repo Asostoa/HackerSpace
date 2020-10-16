@@ -12,10 +12,10 @@
 {{!-- This ist he end of the jumbotron --}}
 
 {{!-- Start of the main container --}}
-<div id="mainContainer" class="row">
+<div id="main-container" class="row">
 
   {{!-- Personal information about the user --}}
-  <div id="userInfo" class="card mx-auto col-4">
+  <div id="userInfo" class="card user-card mx-auto col-4">
     <h1 id="name">User</h1>
     <hr />
     <ul>
@@ -36,7 +36,7 @@
 
   {{!-- Code that the user will provide section --}}
   {{!-- Right Column --}}
-  <div id="codeContainer" class="card mx-auto col-7">
+  <div id="codeContainer" class="card user-card mx-auto col-7">
     <div>
       <form id="save-code-form">
         <div class="form-group">
@@ -54,25 +54,13 @@
       </form>
     </div>
     <div>
-      <div class="user-card code-card">
-        <ul>
-          {{#each code}}
-          <li>
-            <p>ID: {{this.id}}</p>
-            <p>Title: {{this.title}}</p>
-            <p>Code: {{this.code}}</p>
-            <p>Description: {{this.description}}</p>
-            <button data-codeid="{{this.id}}" class="delete-btn btn btn-primary mb-2">Delete Code</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+
     </div>
   </div>
   {{!-- End of the code section --}}
 
   {{!-- Section where the projects are displayed --}}
-  <div id="projectsContainer" class="card mx-auto col-4 pull-left">
+  <div id="projectsContainer" class="card user-card mx-auto col-4 pull-left">
     <h1>Projects</h1>
     <hr />
     <div id="profile">
@@ -80,7 +68,19 @@
     </div>
   </div>
   {{!-- End of the projects --}}
-  <div class="card mx-auto col-7"></div>
-
+  {{!-- <div class="card user-card mx-auto col-7"></div> --}}
+  <div class="card user-card mx-auto col-7">
+    <ul>
+      {{#each code}}
+      <li>
+        <p>ID: {{this.id}}</p>
+        <p>Title: {{this.title}}</p>
+        <p>Code: {{this.code}}</p>
+        <p>Description: {{this.description}}</p>
+        <button data-codeid="{{this.id}}" class="delete-btn btn btn-primary mb-2">Delete Code</button>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
 </div>
 {{!-- End of the main container --}}
