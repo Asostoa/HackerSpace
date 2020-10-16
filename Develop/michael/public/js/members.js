@@ -6,8 +6,29 @@ $(document).ready(() => {
   const deleteButton = $('.delete-btn');
   const updateButton = $('#update-btn');
 
+  $("#hackerInput").on("keyup", (event) => {
+    console.log($("#hackerInput").val());
+    const hackerInput = $("#hackerInput").val();
+    const url = "/api/hacker/"+hackerInput;
+    $.ajax("/api/hacker/" + hackerInput, {
+      type: "GET",
+      url: url,
+      data: hackerInput,
+    }).then(function(result) {
+      console.log(result);
+    });
 
-  $.get("/api/user_data").then((data) => {
+  });
+// const hackerInput = $("#hackerInput").val();
+//     // const url = "/api/hackers/" + hackerInput;
+//     // $.ajax({
+//     //   type: "GET",
+//     //   url: url,
+//     // }).then((result) => {
+//     //   console.log(result);
+//     // });
+  
+  $.get("/api/user_data").then(data => {
     $("#name").text(data.name);
     $("#email").text(data.email);
     $("#city").text(data.city);
@@ -27,12 +48,15 @@ $(document).ready(() => {
         type: "POST",
         url: url,
         data: formData,
-        //  success: success,
-        //  dataType: dataType,
         encType: "multipart/form-data",
         contentType: false,
         processData: false
-      });
+      // eslint-disable-next-line no-empty-function
+      }).then(result => {
+        console.log(result)
+        $(".profile").attr("src", `${result.data}`);
+      })
+
     });
 
     $.ajax({
