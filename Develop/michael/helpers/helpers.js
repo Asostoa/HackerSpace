@@ -1,4 +1,3 @@
-const util = require("util");
 const gc = require("../config/");
 const bucket = gc.bucket("hacker-space"); // should be your bucket name
 
@@ -11,9 +10,9 @@ const bucket = gc.bucket("hacker-space"); // should be your bucket name
  *   "originalname" and "buffer" as keys
  */
 //This function takes a the name of the file image that we get from the front end
-const uploadImage = (file) => new Promise((resolve, reject) => {
+const uploadImage = file =>
+  new Promise((resolve, reject) => {
   //Here we are checking if the file is even going thru or not
-    console.log(file);
   //Decostructing the object that comes back from a file.
   const { originalname, buffer } = file;
   //Here we are splitting the original name of the image by the dots (".")
@@ -42,7 +41,6 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
       .on("finish", () => {
         //This is the url that need's to be assigned to the image.
         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-
         resolve(publicUrl);
       })
       .on("error", error => {
