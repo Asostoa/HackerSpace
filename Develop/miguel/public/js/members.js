@@ -11,8 +11,19 @@ $(document).ready(() => {
     const hackerInput = $("#hackerInput").val();
     const url = "/api/hacker/" + hackerInput;
     $.get(url).then(function(result) {
-      console.log(result);
+      console.log(result[0]);
+      const { name, city, email, technology, linkedin, github } = result[0];
+      window.location.replace("/friend");
+
+      $("#name").text(name);
+      $("#email").text(email);
+      $("#city").text(city);
+      $("#technology").text(technology);
+      $("#github").text(github);
+      $("#linkedin").text(linkedin);
+
     });
+   
   });
 // const hackerInput = $("#hackerInput").val();
 //     // const url = "/api/hackers/" + hackerInput;
@@ -115,12 +126,14 @@ $(document).ready(() => {
     $.ajax("/api/code", {
       type: "POST",
       data: userCode
-    }).then(
-      function() {
-        console.log("created new code");
-        location.reload();
-      }
-    );
+    }).then((result)=>{
+      console.log(result)
+      $("#description").text(result.description);
+    });
+    // function() {
+      //   console.log("created new code");
+      //   location.reload();
+      // }
   };
 
     function deleteCode(event){

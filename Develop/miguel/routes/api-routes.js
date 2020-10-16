@@ -122,7 +122,7 @@ module.exports = function(app) {
       } else {
         res.json(result);
       }
-    });
+    })
   });
 
   app.post("/api/code", (req, res) => {
@@ -132,15 +132,19 @@ module.exports = function(app) {
       description: req.body.description,
       UserId: req.user.id,
     })
-      .then((result) => {
-        res.json({ id: result.insertId });
-        console.log({ id: result.insertId });
-        console.log("complete");
-        res.sendStatus(200);
+      .then((result,err) => {
+        if(err){
+          console.log(err)
+          res.sendStatus(404)
+        }else{
+          res.json(result)
+          res.sendStatus(200);
+        }
+        // res.json({ id: result.insertId });
+        // console.log({ id: result.insertId });
+        // console.log("complete");
+        
       })
-      .catch((err) => {
-        res.status(401).json(err);
-      });
   });
 
   app.delete("/api/code/:id", (req, res) => {
