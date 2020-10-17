@@ -69,18 +69,18 @@
   </div>
   {{!-- End of the projects --}}
   {{!-- <div class="card user-card mx-auto col-7"></div> --}}
-  <div class="card user-card mx-auto col-7">
-    <ul>
-      {{#each code}}
+  <div id="codeContainerWork" class="card user-card mx-auto col-7">
+    {{!-- <ul>
+      {{#each data}}
       <li>
         <p>ID: {{this.id}}</p>
         <p>Title: {{this.title}}</p>
         <p>Code: {{this.code}}</p>
-        <p>Description: {{this.description}}</p>
+        <p id="description">Description: {{this.description}}</p>
         <button data-codeid="{{this.id}}" class="delete-btn btn btn-primary mb-2">Delete Code</button>
       </li>
       {{/each}}
-    </ul>
+    </ul> --}}
   </div>
 </div>
 {{!-- End of the main container --}}

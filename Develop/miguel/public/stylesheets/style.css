@@ -97,3 +97,7 @@ a {
 .footer-section {
   height: 80px;
 }
+
+.codeList{
+  border: solid black 2px;
+}

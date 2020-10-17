@@ -33,7 +33,28 @@ $(document).ready(() => {
 //     // }).then((result) => {
 //     //   console.log(result);
 //     // });
-  
+  $.get("/api/codeSnippets").then(data=>{
+    console.log(data)
+    
+    if (data.length !== 0) {
+      for (var i = 0; i < data.length; i++) {
+        
+
+        var row = $("<ul>");
+        row.addClass("codeList");
+
+        row.append("<li>Title: " + data[i].title + "</li>");
+        row.append("<li>Code: " + data[i].code + "</li>");
+        row.append("<li>Description: " + data[i].description + "</li>");
+
+        row.append("<ul>");
+
+        $("#codeContainerWork").prepend(row);
+      }
+    }
+
+  });
+
   $.get("/api/user_data").then(data => {
     $("#name").text(data.name);
     $("#email").text(data.email);
@@ -128,7 +149,8 @@ $(document).ready(() => {
       data: userCode
     }).then((result)=>{
       console.log(result)
-      $("#description").text(result.description);
+      console.log("succsess")
+      location.reload();
     });
     // function() {
       //   console.log("created new code");
@@ -173,6 +195,8 @@ $(document).ready(() => {
       }
     );
   };
+
+  
 
   saveCodeButton.on('submit', saveCode);
   deleteButton.on('click', deleteCode);
