@@ -15,7 +15,6 @@ app.set("view engine", "handlebars");
 
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
-if(pro)
 const db = require("./models");
 
 app.use("/uploads", express.static("uploads"));
