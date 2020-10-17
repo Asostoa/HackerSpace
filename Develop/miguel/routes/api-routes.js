@@ -125,6 +125,7 @@ module.exports = function(app) {
     })
   });
 
+
   app.post("/api/code", (req, res) => {
     db.Code.create({
       title: req.body.title,
@@ -146,6 +147,29 @@ module.exports = function(app) {
         
       })
   });
+
+  app.get('/api/codeSnippets',function(req,res){
+    db.Code.findAll({
+      where:{
+        UserId:req.user.id
+      }
+    }).then(function(dbCode){
+      // console.log(dbCode);
+      // console.log(dbCode[0].title);
+      let codeHandler = [];
+      console.log(dbCode)
+      for(var i=0;i<dbCode.length;i++){
+        const code = {
+          title: dbCode[i].title,
+          description: dbCode[i].title,
+          code: dbCode[i].title,
+          UserId: dbCode[i].id
+        };
+        codeHandler.push(code)
+      }
+      res.json(codeHandler)
+    })
+  })
 
   app.delete("/api/code/:id", (req, res) => {
     db.Code.destroy({
