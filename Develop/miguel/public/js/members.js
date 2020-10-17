@@ -1,117 +1,147 @@
 $(document).ready(() => {
-  // This file just does a GET request to figure out which user is logged in
-  // and updates the HTML on the page
+                          // This file just does a GET request to figure out which user is logged in
+                          // and updates the HTML on the page
 
-  const saveCodeButton = $('#save-code-form');
-  const deleteButton = $('.delete-btn');
-  const updateButton = $('#update-btn');
+                          const saveCodeButton = $("#save-code-form");
+                          const deleteButton = $(".delete-btn");
+                          const updateButton = $("#update-btn");
 
-  $("#hackerSearchBtn").on("click", (event) => {
-    console.log($("#hackerInput").val());
-    const hackerInput = $("#hackerInput").val();
-    const url = "/api/hacker/" + hackerInput;
-    $.get(url).then(function(result) {
-      console.log(result[0]);
-      const { name, city, email, technology, linkedin, github } = result[0];
-      window.location.replace("/friend");
+                          $("#hackerSearchBtn").on("click", (event) => {
+                            console.log($("#hackerInput").val());
+                            const hackerInput = $("#hackerInput").val();
+                            const url = "/api/hacker/" + hackerInput;
+                            $.get(url).then(function(result) {
+                              console.log(result[0]);
+                              const {
+                                name,
+                                city,
+                                email,
+                                technology,
+                                linkedin,
+                                github,
+                              } = result[0];
+                              window.location.replace("/friend");
 
-      $("#name").text(name);
-      $("#email").text(email);
-      $("#city").text(city);
-      $("#technology").text(technology);
-      $("#github").text(github);
-      $("#linkedin").text(linkedin);
+                              $("#name").text(name);
+                              $("#email").text(email);
+                              $("#city").text(city);
+                              $("#technology").text(technology);
+                              $("#github").text(github);
+                              $("#linkedin").text(linkedin);
+                            });
+                          });
+                          // const hackerInput = $("#hackerInput").val();
+                          //     // const url = "/api/hackers/" + hackerInput;
+                          //     // $.ajax({
+                          //     //   type: "GET",
+                          //     //   url: url,
+                          //     // }).then((result) => {
+                          //     //   console.log(result);
+                          //     // });
+                          $.get("/api/codeSnippets").then((data) => {
+                            if (data.length !== 0) {
+                              for (var i = 0; i < data.length; i++) {
+                                console.log(data[i].code);
 
-    });
-   
-  });
-// const hackerInput = $("#hackerInput").val();
-//     // const url = "/api/hackers/" + hackerInput;
-//     // $.ajax({
-//     //   type: "GET",
-//     //   url: url,
-//     // }).then((result) => {
-//     //   console.log(result);
-//     // });
-  $.get("/api/codeSnippets").then(data=>{
-    console.log(data)
-    
-    if (data.length !== 0) {
-      for (var i = 0; i < data.length; i++) {
-        
+                                var row = $("<ul>");
+                                row.addClass("codeList");
 
-        var row = $("<ul>");
-        row.addClass("codeList");
+                                row.append(
+                                  "<li>Title: " + data[i].title + "</li>"
+                                );
+                                row.append(
+                                  "<li>Code: " + data[i].code + "</li>"
+                                );
+                                // row.append("<li>Description: " + data[i].description + "</li>");
 
-        row.append("<li>Title: " + data[i].title + "</li>");
-        row.append("<li>Code: " + data[i].code + "</li>");
-        row.append("<li>Description: " + data[i].description + "</li>");
+                                row.append("<ul>");
 
-        row.append("<ul>");
+                                $("#codeContainerWork").prepend(row);
+                              }
+                            }
+                          });
+                          // Johnsito Doe       johnsitodoea@gmail.com  john
 
-        $("#codeContainerWork").prepend(row);
-      }
-    }
+                          // $.ajax({
+                          //   type: "POST",
+                          //   url: url,
+                          //   data: formData,
+                          //   encType: "multipart/form-data",
+                          //   contentType: false,
+                          //   processData: false,
+                          //   // eslint-disable-next-line no-empty-function
+                          // }).then((result) => {
+                          //   console.log(result);
+                          //   $(".profile").attr("src", `${result.data}`);
+                          // });
+                          // elmicheal@gmail.com
 
-  });
+                          $.get("/api/user_data").then((data) => {
+                            $("#name").text(data.name);
+                            $("#email").text(data.email);
+                            $("#city").text(data.city);
+                            $("#technology").text(data.technology);
+                            $("#github").text(data.github);
+                            $("#linkedin").text(data.linkedin);
 
-  $.get("/api/user_data").then(data => {
-    $("#name").text(data.name);
-    $("#email").text(data.email);
-    $("#city").text(data.city);
-    $("#technology").text(data.technology);
-    $("#github").text(data.github);
-    $("#linkedin").text(data.linkedin);
+                            const userGit = data.github;
+                            $("#uploadBtn").click((event) => {
+                              event.preventDefault();
+                              const input = document.querySelector(
+                                  "input[type=file]"
+                                ),
+                                file = input.files[0];
+                              const formData = new FormData();
+                              formData.append("avatar", file);
+                              const url = "/uploads";
+                              $.ajax({
+                                type: "POST",
+                                url: url,
+                                data: formData,
+                                encType: "multipart/form-data",
+                                contentType: false,
+                                processData: false,
+                                // eslint-disable-next-line no-empty-function
+                              }).then((result) => {
+                                console.log(result);
+                                $(".profile").attr("src", `${result.data}`);
+                              });
+                            });
 
-    const userGit = data.github;
-    $("#uploadBtn").click(event => {
-      event.preventDefault();
-      const input = document.querySelector("input[type=file]"),
-        file = input.files[0];
-      const formData = new FormData();
-      formData.append("avatar", file);
-      const url = "/uploads";
-      $.ajax({
-        type: "POST",
-        url: url,
-        data: formData,
-        encType: "multipart/form-data",
-        contentType: false,
-        processData: false
-      // eslint-disable-next-line no-empty-function
-      }).then(result => {
-        console.log(result)
-        $(".profile").attr("src", `${result.data}`);
-      })
+                            $.ajax({
+                              url: "https://api.github.com/users/" + userGit,
+                              data: {
+                                // eslint-disable-next-line camelcase
+                                client_id: "b9315bcd5a07fcd759d8",
+                                // eslint-disable-next-line camelcase
+                                client_secret:
+                                  "a2b698bf7e7c02f898197cf136d1a41f704ca8e4",
+                              },
+                            }).done((user) => {
+                              $.ajax({
+                                url:
+                                  "https://api.github.com/users/" +
+                                  userGit +
+                                  "/repos",
+                                data: {
+                                  // eslint-disable-next-line camelcase
+                                  client_id: "b9315bcd5a07fcd759d8",
+                                  // eslint-disable-next-line camelcase
+                                  client_secret:
+                                    "a2b698bf7e7c02f898197cf136d1a41f704ca8e4",
+                                  sort: "created: asc",
+                                  // eslint-disable-next-line camelcase
+                                  per_page: 5,
+                                },
+                              }).done((repos) => {
+                                console.log(user.avatar_url);
+                                $("#profileImage").attr(
+                                  "src",
+                                  "${user.avatar_url}"
+                                );
 
-    });
-
-    $.ajax({
-      url: "https://api.github.com/users/" + userGit,
-      data: {
-        // eslint-disable-next-line camelcase
-        client_id: "b9315bcd5a07fcd759d8",
-        // eslint-disable-next-line camelcase
-        client_secret: "a2b698bf7e7c02f898197cf136d1a41f704ca8e4"
-      }
-    }).done((user) => {
-      $.ajax({
-        url: "https://api.github.com/users/" + userGit + "/repos",
-        data: {
-          // eslint-disable-next-line camelcase
-          client_id: "b9315bcd5a07fcd759d8",
-          // eslint-disable-next-line camelcase
-          client_secret: "a2b698bf7e7c02f898197cf136d1a41f704ca8e4",
-          sort: "created: asc",
-          // eslint-disable-next-line camelcase
-          per_page: 5
-        },
-      }).done(repos => {
-        console.log(user.avatar_url);
-        $("#profileImage").attr("src", "${user.avatar_url}");
-
-        $.each(repos, (_index, repo) => {
-          $("#repos").append(`
+                                $.each(repos, (_index, repo) => {
+                                  $("#repos").append(`
           <div class="card">
             <div class="row">
               <div class="col-md-8">
@@ -126,79 +156,79 @@ $(document).ready(() => {
             </div>
           </div>
         `);
-        });
-      });
-      $("#profile").html(`
+                                });
+                              });
+                              $("#profile").html(`
       <div id="repos"></div>
       `);
-    });
-  });
+                            });
+                          });
 
-  function saveCode(event){
-    event.preventDefault();
-    const userCode = {
-        title: $('#title').val(),
-        code: $('#description').val(),
-        description: $('#description').val()
-    }
+                          function saveCode(event) {
+                            event.preventDefault();
+                            const userCode = {
+                              title: $("#title").val(),
+                              code: $("#description").val(),
+                              description: $("#description").val(),
+                            };
 
-    console.log(userCode)
+                            console.log(userCode);
 
-    $.ajax("/api/code", {
-      type: "POST",
-      data: userCode
-    }).then((result)=>{
-      console.log(result)
-      console.log("succsess")
-      location.reload();
-    });
-    // function() {
-      //   console.log("created new code");
-      //   location.reload();
-      // }
-  };
+                            $.ajax("/api/code", {
+                              type: "POST",
+                              data: userCode,
+                            }).then((result) => {
+                              console.log(result);
+                              console.log("succsess");
+                              location.reload();
+                            });
+                            // function() {
+                            //   console.log("created new code");
+                            //   location.reload();
+                            // }
+                          }
 
-    function deleteCode(event){
-    let id = $(this).data("codeid");
-    
-    console.log(id)
+                          function deleteCode(event) {
+                            let id = $(this).data("codeid");
 
-    $.ajax("/api/code/"+id, {
-      type: "DELETE"
-    }).then(
-      function(){
-        console.log("deleted code with id ", id)
-        location.reload();
-      }
-    );
-  };
+                            console.log(id);
 
-    function updateCode(event){
-    event.preventDefault();
-    
-    const id = $("#code-selector").val();
-    console.log(id);
+                            $.ajax("/api/code/" + id, {
+                              type: "DELETE",
+                            }).then(function() {
+                              console.log("deleted code with id ", id);
+                              location.reload();
+                            });
+                          }
 
-    const updatedCode = {
-      title: $("#update-code [name=title]").val().trim(),
-      code: $("#update-code [name=code]").val().trim(),
-      description: $("#update-code [name=description]").val().trim()
-    };
+                          function updateCode(event) {
+                            event.preventDefault();
 
-    $.ajax("/api/code/" + id, {
-      type: "PUT",
-      data: updatedCode
-    }).then(
-      function() {
-        console.log("updated id ", id);
-        // location.reload();
-      }
-    );
-  };
+                            const id = $("#code-selector").val();
+                            console.log(id);
 
-  
+                            const updatedCode = {
+                              title: $("#update-code [name=title]")
+                                .val()
+                                .trim(),
+                              code: $("#update-code [name=code]")
+                                .val()
+                                .trim(),
+                              description: $("#update-code [name=description]")
+                                .val()
+                                .trim(),
+                            };
 
-  saveCodeButton.on('submit', saveCode);
-  deleteButton.on('click', deleteCode);
-  updateButton.on('submit', updateCode);
-});
+                            $.ajax("/api/code/" + id, {
+                              type: "PUT",
+                              data: updatedCode,
+                            }).then(function() {
+                              console.log("updated id ", id);
+                              // location.reload();
+                            });
+                          }
+
+                          saveCodeButton.on("submit", saveCode);
+                          deleteButton.on("click", deleteCode);
+                          updateButton.on("submit", updateCode);
+                        });

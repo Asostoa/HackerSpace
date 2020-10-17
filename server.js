@@ -1,3 +1,5 @@
+const mysql = require("mysql");
+let connection;
 // Requiring necessary npm packages
 const express = require("express");
 const session = require("express-session");
@@ -5,15 +7,17 @@ const session = require("express-session");
 const passport = require("./config/passport");
 // const bodyParser = require("body-parser");
 
-
-
-// Setting up port and requiring models for syncing
-const PORT = process.env.PORT || 8080;
-const db = require("./models");
-
+const exphbs = require("express-handlebars");
 // Creating express app and configuring middleware needed for authentication
 const app = express();
 
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// Setting up port and requiring models for syncing
+const PORT = process.env.PORT || 8080;
+if(pro)
+const db = require("./models");
 
 app.use("/uploads", express.static("uploads"));
 app.use(express.urlencoded({ extended: true }));

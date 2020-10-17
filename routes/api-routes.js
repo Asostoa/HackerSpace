@@ -26,9 +26,9 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 1024 * 5
+    fileSize: 1024 * 1024 * 5,
   },
-  fileFilter: fileFilter
+  fileFilter: fileFilter,
 });
 
 module.exports = function(app) {
@@ -65,16 +65,15 @@ module.exports = function(app) {
   });
 
   app.post("/uploads", upload.single("avatar"), async (req, res, next) => {
-    console.log(req.file);
     try {
-      console.log(req);
       const myFile = req.file;
-      // console.log(myFile);
+      console.log(myFile);
+      const filePath = req.file.path;
       const imageUrl = await uploadImage(myFile);
       console.log("this is the image url: ", imageUrl);
       res.status(200).json({
         message: "Upload was successful",
-        data: imageUrl,
+        data: filePath,
       });
     } catch (error) {
       next(error);
@@ -104,7 +103,26 @@ module.exports = function(app) {
         github: req.user.github,
         linkedin: req.user.linkedin,
       });
+      //We need to create a flag that will validate the user id that is being logged into the profile to match the id of the user which we are serching for , if they dont match hide certain things otherwise lets leave it alone.
     }
+  });
+
+  app.get("/api/hacker/:searchTerm", (req, res) => {
+    const hackerSearch = req.params.searchTerm;
+    console.log(hackerSearch);
+
+    db.User.findAll({
+      where: {
+        name: hackerSearch,
+      },
+    }).then((result, err) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(404).end();
+      } else {
+        res.json(result);
+      }
+    });
   });
 
   app.post("/api/code", (req, res) => {
@@ -113,19 +131,43 @@ module.exports = function(app) {
       code: req.body.code,
       description: req.body.description,
       UserId: req.user.id,
-    })
-      .then(() => {
-        res.json({ id: result.insertId });
-        console.log({ id: result.insertId });
-        console.log("complete");
+    }).then((result, err) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(404);
+      } else {
+        res.json(result);
         res.sendStatus(200);
-      })
-      .catch((err) => {
-        res.status(401).json(err);
-      });
+      }
+      // res.json({ id: result.insertId });
+      // console.log({ id: result.insertId });
+      // console.log("complete");
+    });
   });
 
-  app.delete("/api/code/:id", (req) => {
+  app.get("/api/codeSnippets", function(req, res) {
+    db.Code.findAll({
+      where: {
+        UserId: req.user.id,
+      },
+    }).then(function(dbCode) {
+      // console.log(dbCode);
+      // console.log(dbCode[0].title);
+      // let codeHandler = [];
+      // console.log(dbCode)
+      // for(var i=0;i<dbCode.length;i++){
+      //   const code = {
+      //     title: dbCode[i].title,
+      //     description: dbCode[i].title,
+      //     code: dbCode[i].title,
+      //     UserId: dbCode[i].id
+      //   };
+      //   codeHandler.push(code)
+      res.json(dbCode);
+    });
+  });
+
+  app.delete("/api/code/:id", (req, res) => {
     db.Code.destroy({
       where: {
         id: req.params.id,
@@ -136,7 +178,7 @@ module.exports = function(app) {
         res.sendStatus(200);
       })
       .catch((err) => {
-        res.status(401).json(err);
+        res.statusStatus(401).json(err);
       });
   });
 
@@ -151,10 +193,10 @@ module.exports = function(app) {
         where: req.params.id,
       }
     )
-      .then(rowsUpdated => {
+      .then((rowsUpdated) => {
         res.json(rowsUpdated);
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(401).json(err);
       });
   });

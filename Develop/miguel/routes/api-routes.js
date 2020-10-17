@@ -156,18 +156,19 @@ module.exports = function(app) {
     }).then(function(dbCode){
       // console.log(dbCode);
       // console.log(dbCode[0].title);
-      let codeHandler = [];
-      console.log(dbCode)
-      for(var i=0;i<dbCode.length;i++){
-        const code = {
-          title: dbCode[i].title,
-          description: dbCode[i].title,
-          code: dbCode[i].title,
-          UserId: dbCode[i].id
-        };
-        codeHandler.push(code)
-      }
-      res.json(codeHandler)
+      // let codeHandler = [];
+      // console.log(dbCode)
+      // for(var i=0;i<dbCode.length;i++){
+      //   const code = {
+      //     title: dbCode[i].title,
+      //     description: dbCode[i].title,
+      //     code: dbCode[i].title,
+      //     UserId: dbCode[i].id
+      //   };
+      //   codeHandler.push(code)
+      res.json(dbCode)
+      
+      
     })
   })
 
