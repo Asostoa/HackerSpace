@@ -28,8 +28,8 @@ module.exports = function(app) {
     res.render("index");
   });
   
-  app.get("/friend", isAuthenticated, (req, res) => {
-    // res.sendFile(path.join(__dirname, "../public/members.html"));
-    res.render("search");
-  });
+  // app.get("/friend", isAuthenticated, (req, res) => {
+  //   // res.sendFile(path.join(__dirname, "../public/members.html"));
+  //   res.render("search");
+  // });
 };
