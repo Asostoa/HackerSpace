@@ -5,10 +5,13 @@ $(document).ready(() => {
   const saveCodeButton = $("#save-code-form");
   const deleteButton = $(".delete-btn");
   const updateButton = $("#update-btn");
+  let hackerInput;
+  
   //Here we are handling the submit on the search bar for other users.
   $("#hackerSearchBtn").on("click", (event) => {
-    console.log($("#hackerInput").val());
-    const hackerInput = $("#hackerInput").val();
+    hackerInput = $("#hackerInput").val();
+    console.log("this is the new new: ",hackerInput)
+   
     //This is the route that is hit on the url
     const url = "/api/hacker/" + hackerInput;
     
@@ -126,6 +129,7 @@ $(document).ready(() => {
       <div id="repos"></div>
       `);
     });
+    
   });
 
   function saveCode(event) {

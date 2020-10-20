@@ -138,7 +138,7 @@ module.exports = function(app) {
       //We need to create a flag that will validate the user id that is being logged into the profile to match the id of the user which we are serching for , if they dont match hide certain things otherwise lets leave it alone.
     }
   });
-
+  
   app.get("/api/hacker/:searchTerm", (req, res) => {
     const hackerSearch = req.params.searchTerm;
     console.log(hackerSearch);
@@ -155,6 +155,27 @@ module.exports = function(app) {
         res.json(result);
       }
     });
+
+  });
+
+  app.get("/api/friend/codeSnippets/:searchId", (req,res)=>{
+    const searchIdCode =req.params.searchId;
+    console.log("This is the value passed to the url:",searchIdCode);
+    
+    db.Code.findAll({
+      where: {
+        UserId: searchIdCode,
+      },
+    }).then((result,err)=>{
+      if(err){
+      console.log(err);
+      res.sendStatus(404).end();
+      }else{
+        res.json(result)
+        res.sendStatus(200);
+      }
+      
+    })
   });
 
   app.post("/api/code", (req, res) => {
@@ -187,15 +208,6 @@ module.exports = function(app) {
     });
   });
   
-  app.get("/api/friend/codeSnippets", function(req, res) {
-    db.Code.findAll({
-      where: {
-        UserId: req.user.id,
-      },
-    }).then(function(dbCode) {
-      res.json(dbCode);
-    });
-  });
 
   app.delete("/api/code/:id", (req, res) => {
     db.Code.destroy({
