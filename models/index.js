@@ -18,16 +18,6 @@ if (config.use_env_variable) {
     config
   );
 }
-// var sequelize = new Sequelize(
-//   process.env.DB_DATABASE_NAME || config.database,
-//   process.env.DB_USER || config.username,
-//   process.env.DB_PASSWORD || config.password,
-//   {
-//     ...config,
-//     host: process.env.DB_HOST || config.host,
-//     port: process.env.DB_PORT || config.port,
-//   }
-// );
 fs.readdirSync(__dirname)
   .filter(function(file) {
     return (

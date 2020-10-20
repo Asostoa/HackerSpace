@@ -42,6 +42,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    profileImage: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   });
   User.associate = function(models) {
     // Associating User with Codes

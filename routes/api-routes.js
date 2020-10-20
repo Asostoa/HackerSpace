@@ -4,7 +4,7 @@ const passport = require("../config/passport");
 const multer = require("multer");
 //Whatever value is passed here has to be "req.file" value of the image.
 const uploadImage = require("../helpers/helpers.js");
-
+let filePath;
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "./uploads/");
@@ -67,10 +67,26 @@ module.exports = function(app) {
   app.post("/uploads", upload.single("avatar"), async (req, res, next) => {
     try {
       const myFile = req.file;
-      console.log(myFile);
-      const filePath = req.file.path;
-      const imageUrl = await uploadImage(myFile);
-      console.log("this is the image url: ", imageUrl);
+      console.log("this is the file:",myFile);
+      filePath = req.file.path;
+      // const imageUrl = await uploadImage(myFile);
+      // console.log("this is the image url: ", imageUrl);
+      db.User.update({
+        profileImage:filePath
+      },
+      {
+        where:{
+          id:req.user.id
+        }
+      }).then((result,error)=>{
+        if(error){
+          console.log(error)
+          res.status(404).end();
+        }else{
+          res.json(result)
+          location.reload()
+        }
+      })
       res.status(200).json({
         message: "Upload was successful",
         data: filePath,
@@ -79,6 +95,22 @@ module.exports = function(app) {
       next(error);
     }
   });
+
+  app.get('/imageUpload',(req,res)=>{
+    db.User.findAll({
+      where:{
+        id: req.user.id
+      }
+    }).then((result, err) => {
+      if (err) {
+        console.log("This is the error:", err);
+      } else {
+        const imagePath=result[0].profileImage;
+        res.json(imagePath);
+        console.log("this is the result:", imagePath);
+      }
+    });
+  })
 
   // Route for logging user out
   app.get("/logout", (req, res) => {
@@ -111,7 +143,7 @@ module.exports = function(app) {
     const hackerSearch = req.params.searchTerm;
     console.log(hackerSearch);
 
-    db.User.findAll({
+    db.User.findOne({
       where: {
         name: hackerSearch,
       },
@@ -151,18 +183,16 @@ module.exports = function(app) {
         UserId: req.user.id,
       },
     }).then(function(dbCode) {
-      // console.log(dbCode);
-      // console.log(dbCode[0].title);
-      // let codeHandler = [];
-      // console.log(dbCode)
-      // for(var i=0;i<dbCode.length;i++){
-      //   const code = {
-      //     title: dbCode[i].title,
-      //     description: dbCode[i].title,
-      //     code: dbCode[i].title,
-      //     UserId: dbCode[i].id
-      //   };
-      //   codeHandler.push(code)
+      res.json(dbCode);
+    });
+  });
+  
+  app.get("/api/friend/codeSnippets", function(req, res) {
+    db.Code.findAll({
+      where: {
+        UserId: req.user.id,
+      },
+    }).then(function(dbCode) {
       res.json(dbCode);
     });
   });

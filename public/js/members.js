@@ -1,49 +1,46 @@
+
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-
   const saveCodeButton = $("#save-code-form");
   const deleteButton = $(".delete-btn");
   const updateButton = $("#update-btn");
-
+  //Here we are handling the submit on the search bar for other users.
   $("#hackerSearchBtn").on("click", (event) => {
     console.log($("#hackerInput").val());
     const hackerInput = $("#hackerInput").val();
+    //This is the route that is hit on the url
     const url = "/api/hacker/" + hackerInput;
+    
     $.get(url).then(function(result) {
-      console.log(result[0]);
-      const { name, city, email, technology, linkedin, github } = result[0];
+      console.log("before:", result);
+      //Here we are decostructing the object that comes back from the call.
+      const searchExport = JSON.stringify(result)
+      sessionStorage.setItem("hackerSearch",searchExport)
+      // We relocate you ro the window route of friends
       window.location.replace("/friend");
-
-      $("#name").text(name);
-      $("#email").text(email);
-      $("#city").text(city);
-      $("#technology").text(technology);
-      $("#github").text(github);
-      $("#linkedin").text(linkedin);
+      // We give the values of the object to its respective html sections.
+      
     });
   });
-  // const hackerInput = $("#hackerInput").val();
-  //     // const url = "/api/hackers/" + hackerInput;
-  //     // $.ajax({
-  //     //   type: "GET",
-  //     //   url: url,
-  //     // }).then((result) => {
-  //     //   console.log(result);
-  //     // });
+  //Here is where i get the image file path into the front end
+  $.get('/imageUpload').then((data)=>{
+    $(".profile").attr("src", `${data}`);
+  })
+  //This is the route to retrive all of the code snippets that are inside of the workbench
   $.get("/api/codeSnippets").then((data) => {
+    //Here we are looping thru the lengthof the codeSnippets that we have inside of the database.
     if (data.length !== 0) {
       for (var i = 0; i < data.length; i++) {
-        console.log(data[i].code);
-
+        //Here we are creating the list of items for each one of th codes
         var row = $("<ul>");
         row.addClass("codeList");
 
         row.append("<li>Title: " + data[i].title + "</li>");
         row.append("<li>Code: " + data[i].code + "</li>");
-        // row.append("<li>Description: " + data[i].description + "</li>");
+        row.append("<li>Description: " + data[i].description + "</li>");
 
-        row.append("<ul>");
+        row.append("</ul>");
 
         $("#codeContainerWork").prepend(row);
       }
@@ -51,29 +48,19 @@ $(document).ready(() => {
   });
   // Johnsito Doe       johnsitodoea@gmail.com  john
 
-  // $.ajax({
-  //   type: "POST",
-  //   url: url,
-  //   data: formData,
-  //   encType: "multipart/form-data",
-  //   contentType: false,
-  //   processData: false,
-  //   // eslint-disable-next-line no-empty-function
-  // }).then((result) => {
-  //   console.log(result);
-  //   $(".profile").attr("src", `${result.data}`);
-  // });
   // elmicheal@gmail.com
-
+  //Here we are getting all of the information about the user that is logged into the server.
   $.get("/api/user_data").then((data) => {
+    //storing the github to use later on on the ajax call for the githun api
+    const userGit = data.github;
+    //Giving the text values to the respective sections of the site.
     $("#name").text(data.name);
     $("#email").text(data.email);
     $("#city").text(data.city);
     $("#technology").text(data.technology);
     $("#github").text(data.github);
     $("#linkedin").text(data.linkedin);
-
-    const userGit = data.github;
+    //Handling the click upload for the profile image 
     $("#uploadBtn").click((event) => {
       event.preventDefault();
       const input = document.querySelector("input[type=file]"),
@@ -91,10 +78,10 @@ $(document).ready(() => {
         // eslint-disable-next-line no-empty-function
       }).then((result) => {
         console.log(result);
-        $(".profile").attr("src", `${result.data}`);
+        location.reload()
       });
     });
-
+    //
     $.ajax({
       url: "https://api.github.com/users/" + userGit,
       data: {
@@ -116,8 +103,6 @@ $(document).ready(() => {
           per_page: 5,
         },
       }).done((repos) => {
-        console.log(user.avatar_url);
-        $("#profileImage").attr("src", "${user.avatar_url}");
 
         $.each(repos, (_index, repo) => {
           $("#repos").append(`
@@ -147,7 +132,7 @@ $(document).ready(() => {
     event.preventDefault();
     const userCode = {
       title: $("#title").val(),
-      code: $("#description").val(),
+      code: $("#code").val(),
       description: $("#description").val(),
     };
 

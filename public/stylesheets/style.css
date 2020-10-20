@@ -29,6 +29,20 @@ form.login {
   font-size: 1.5rem;
   text-align: right;
 }
+#code{
+  height:15rem;
+  max-height: 15rem;
+}
+#description{
+  height: 8rem;
+}
+#imageForm{
+  margin-bottom: 0%;
+}
+#userInfo{
+height: 35rem;
+max-height: 50rem;
+}
 .profile{
   border: 1px solid black;
   margin-top: 10rem;
