@@ -1,1 +1,0 @@
-INSERT INTO userCode (title, code, description) VALUES ('My Code Title', 'My Code', 'My Code Description');
