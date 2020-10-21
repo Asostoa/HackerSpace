@@ -192,9 +192,6 @@ module.exports = function(app) {
         res.json(result);
         res.sendStatus(200);
       }
-      // res.json({ id: result.insertId });
-      // console.log({ id: result.insertId });
-      // console.log("complete");
     });
   });
 
