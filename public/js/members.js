@@ -134,13 +134,24 @@ $(document).ready(() => {
 
   function saveCode(event) {
     event.preventDefault();
+    let titleHandler=$("#title").val();
+    titleHandler = String(titleHandler);
+    let codeHandler=$("#code").val();
+    codeHandler = String(codeHandler);
+    let descriptionHandler=$("#description").val();
+    descriptionHandler = String(descriptionHandler);
+    console.log(typeof(titleHandler));
+    console.log(typeof(codeHandler));
+    console.log(typeof(descriptionHandler));
+
     const userCode = {
-      title: $("#title").val(),
-      code: $("#code").val(),
-      description: $("#description").val(),
+      title: titleHandler ,
+      code: codeHandler,
+      description: descriptionHandler,
     };
 
     console.log(userCode);
+
 
     $.ajax("/api/code", {
       type: "POST",
