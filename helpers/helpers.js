@@ -1,3 +1,4 @@
+//This is redundant for now , this is for future development.
 const gc = require("../config/");
 const bucket = gc.bucket("hacker-space"); // should be your bucket name
 
