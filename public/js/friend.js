@@ -55,6 +55,25 @@ $(document).ready(()=>{
       <div id="repos"></div>
       `);
       });
+
+    $("#hackerSearchBtn").on("click", (event) => {
+    hackerInput = $("#hackerInput").val();
+    console.log("this is the new new: ",hackerInput)
+   
+    //This is the route that is hit on the url
+    const url = "/api/hacker/" + hackerInput;
+    
+    $.get(url).then(function(result) {
+      console.log("before:", result);
+      //Here we are decostructing the object that comes back from the call.
+      const searchExport = JSON.stringify(result)
+      sessionStorage.setItem("hackerSearch",searchExport)
+      // We relocate you ro the window route of friends
+      window.location.replace("/friend");
+      // We give the values of the object to its respective html sections.
+      
+    });
+  });
       const codeUrl = "/api/friend/codeSnippets/" + importParsed.id;
       $.get(codeUrl).then(data=>{
           console.log(data)
