@@ -44,47 +44,67 @@ One of the advantages of using MySql was the relationships in between the tables
  ## Directory 
 
  ```
-├── config
-│   ├── connection.js
-│   └── orm.js
-│ 
-├── controllers
-│   └── burgersController.js
-│
-├── db
-│   ├── schema.sql
-│   └── seeds.sql
-│
-├── models
-│   └── burger.js
-│ 
-├── node_modules
-│ 
-│── public
-│   └── assets
-│       ├── css
-│       │   └── style.css
-│       ├──js
-│       │   └── burger.js
-│       └── img
-│           └── appImage.png
-│
-├──views
-│    ├── index.handlebars
-│    ├── layouts
-│    │    └── main.handlebars
-│    └── partials
-│         └── burger-block.handlebars
-│
-├── .gitignore
-│
-├── package-lock.json
-│
-├── package.json   
-│
-├── server.js
-│
-└──README.md
+HackerSpace
+      ├─ config
+      │  ├─ config.json
+      │  ├─ index.js
+      │  ├─ keys.json
+      │  ├─ middleware
+      │  │  └─ isAuthenticated.js
+      │  └─ passport.js
+      ├─ db
+      │  └─ schema.sql
+      ├─ helpers
+      │  └─ helpers.js
+      ├─ models
+      │  ├─ code.js
+      │  ├─ index.js
+      │  └─ user.js
+      ├─node_modules
+      ├─ public
+      │  ├─ friend.html
+      │  ├─ images
+      │  │  ├─ Attachment-4.png
+      │  │  ├─ Hacker SPace.png
+      │  │  ├─ mainWindow.jpg
+      │  │  ├─ sample-hero-image.png
+      │  │  ├─ sample-profile-pic.png
+      │  │  └─ Untitled design (8).png
+      │  ├─ js
+      │  │  ├─ friend.js
+      │  │  ├─ login.js
+      │  │  ├─ members.js
+      │  │  └─ signup.js
+      │  ├─ login.html
+      │  ├─ members.html
+      │  ├─ signup.html
+      │  └─ stylesheets
+      │     └─ style.css
+      ├─ routes
+      │  ├─ api-routes.js
+      │  └─ html-routes.js
+      │
+      ├─ uploads
+      │    └─ sample
+      ├─ .eslintignore
+      ├─ .eslintrc.json
+      ├─ index.html
+      ├─ package-lock.json
+      ├─ package.son
+      │  ├─ js
+      │  │  ├─ friend.js
+      │  │  ├─ login.js
+      │  │  ├─ members.js
+      │  │  └─ signup.js
+      │  ├─ login.html
+      │  ├─ members.html
+      │  ├─ signup.html
+      │  └─ stylesheets
+      │     └─ style.css
+      ├─ README.md
+      ├─ 
+      └─ server.js
+        
 
 ```
 
@@ -98,7 +118,7 @@ One of the advantages of using MySql was the relationships in between the tables
   - Johnsito doe
   - alexander de sostoa
 
-  ![Image Of Project](./public/assets/images/burgerEater.gif)
+  ![Image Of Project]()
 
   ## Git hub user name
 
@@ -110,9 +130,9 @@ One of the advantages of using MySql was the relationships in between the tables
   - Url: https://fast-bayou-85635.herokuapp.com/
 
   ## Repository
+- [Git hub Alexander De Sostoa](https://github.com/Asostoa)
+- [Git hub Miguelangel Weill](https://api.github.com/users/Miguelangelweill)
+- [Git hub Michael Muniz](https://github.com/modernmediamichael)
+- [Git hub Thalia Rodriguez](https://github.com/thaliarpuron)
 
-![Image of generator](https://avatars2.githubusercontent.com/u/64563531?v=4)
-
-[Git hub profile](https://api.github.com/users/Miguelangelweill)
-
-[This is my Git Hub repository](https://github.com/Miguelangelweill)
+[This is The Project repository](https://github.com/Asostoa/HackerSpace)
