@@ -1,13 +1,13 @@
 {
   "name": "mysql-sequelize-heroku",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a web application for developers to share and see other frined code and profile.",
   "main": "server.js",
   "scripts": {
     "test": "npm run lint",
     "start": "node server.js",
-    "lint": "eslint --quiet .",
-    "fix": "eslint --fix .",
+    "lint": "eslint **/*.js --quiet",
+    "fix": "eslint --fix ",
     "watch": "nodemon server.js"
   },
   "keywords": [],
