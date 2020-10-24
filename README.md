@@ -65,8 +65,6 @@ HackerSpace
       │  ├─ friend.html
       │  ├─ images
       │  │  ├─ Attachment-4.png
-      │  │  ├─ Hacker SPace.png
-      │  │  ├─ mainWindow.jpg
       │  │  ├─ sample-hero-image.png
       │  │  ├─ sample-profile-pic.png
       │  │  └─ Untitled design (8).png
