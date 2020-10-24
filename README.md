@@ -91,16 +91,7 @@ HackerSpace
       ├─ index.html
       ├─ package-lock.json
       ├─ package.son
-      │  ├─ js
-      │  │  ├─ friend.js
-      │  │  ├─ login.js
-      │  │  ├─ members.js
-      │  │  └─ signup.js
-      │  ├─ login.html
-      │  ├─ members.html
-      │  ├─ signup.html
-      │  └─ stylesheets
-      │     └─ style.css
+      │  
       ├─ README.md
       ├─ 
       └─ server.js
